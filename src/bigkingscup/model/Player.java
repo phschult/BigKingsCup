@@ -2,6 +2,8 @@ package bigkingscup.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -11,7 +13,9 @@ public class Player {
 
     private String name;
     private String gender;
+    private int countCards;
     private final List<String> hand = new ArrayList<String>();
+    private Map stat = new TreeMap();
 
     public Player() {
 
@@ -26,7 +30,7 @@ public class Player {
     }
 
     public void setHand(String card) {
-        hand.add(name);
+        hand.add(card);
     }
 
     public List<String> getHand() {
@@ -45,7 +49,8 @@ public class Player {
         for (int i = 0; i <= hand.size(); i++) {
             for (int j = 0; j <= hand.size(); j++) {
                 if(hand.get(i).equals(hand.get(j))){
-                    
+                    countCards++;
+                    stat.put(hand.get(i), countCards);
                 }
             }
         }

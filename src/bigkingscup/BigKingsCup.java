@@ -1,6 +1,7 @@
 package bigkingscup;
 
 import bigkingscup.model.Deck;
+import bigkingscup.model.Player;
 import java.util.logging.Logger;
 
 /**
@@ -29,7 +30,15 @@ public class BigKingsCup {
             throw new Exception("Deck is empty!");
         }
         deck.showDeck();
-
+        
+        Player player = new Player();
+        player.setGender("male");
+        player.setName("Philipp");
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.statistic();
+        
+        System.out.println("");
     }
 
 }
