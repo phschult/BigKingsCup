@@ -28,11 +28,18 @@ public class Player {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
+    /**
+     * Saves the cards drawn by the player.
+     * @param card 
+     */
     public void setHand(String card) {
         hand.add(card);
     }
-
+    
+    /**
+     * returns the players hand.
+     * @return hand 
+     */
     public List<String> getHand() {
         return hand;
     }
@@ -45,9 +52,12 @@ public class Player {
         return gender;
     }
     
-    public void statistic(){
-        for (int i = 0; i <= hand.size(); i++) {
-            for (int j = 0; j <= hand.size(); j++) {
+    /**
+     * Shows which playing cards of the players as often has drawn.
+     */ 
+    public void statisticCounter(){
+        for (int i = 0; i < hand.size(); i++) {
+            for (int j = 0; j < hand.size(); j++) {
                 if(hand.get(i).equals(hand.get(j))){
                     countCards++;
                     stat.put(hand.get(i), countCards);

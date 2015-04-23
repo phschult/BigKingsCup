@@ -34,10 +34,22 @@ public class BigKingsCup {
         Player player = new Player();
         player.setGender("male");
         player.setName("Philipp");
+        System.out.println("");
         player.setHand(deck.dealCard());
         player.setHand(deck.dealCard());
-        player.statistic();
-        
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.setHand(deck.dealCard());
+        player.statisticCounter();
+        System.out.println("");
+        deck.showDeck();
         System.out.println("");
     }
 
