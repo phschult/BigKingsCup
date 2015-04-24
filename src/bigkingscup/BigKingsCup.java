@@ -42,11 +42,7 @@ public class BigKingsCup {
         player.setHand(deck.dealCard());
         player.setHand(deck.dealCard());
         player.setHand(deck.dealCard());
-        player.setHand(deck.dealCard());
-        player.setHand(deck.dealCard());
-        player.setHand(deck.dealCard());
-        player.setHand(deck.dealCard());
-        player.setHand(deck.dealCard());
+
         player.statisticCounter();
         System.out.println("");
         deck.showDeck();
