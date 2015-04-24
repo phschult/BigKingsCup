@@ -1,8 +1,6 @@
 package bigkingscup.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -10,75 +8,107 @@ import java.util.List;
  */
 public class Deck {
 
-    // create possible card combinations
-    private final String[] SUITS = {"HEARTS", "DIAMONDS", "CLUPS", "SPADES"};
-    private final String[] RANKS = {"ASS", "KING", "QUEEN", "JACK", "10", "9", "8", "7", "6", "5", "4", "3", "2"};
+    private static final int FIFTYTWO = 52;
 
-    // maximum number of cards
-    private int deckLength = SUITS.length * RANKS.length;
-    private final List<String> fullDeck = new ArrayList<>();
+    private static final int ONE = 1;
 
+    private static final int FOUR = 4;
+
+    private static final int ZERO = 0;
+
+    private static final int THIRTEEN = 13;
+
+    private Card[] deck;
     /**
-     * Constructor creates a new Deck
+     * Number of cards currently in the deck.
      */
+    private int numOfCards;
+    /**
+     * Card index.
+     */
+    private int index = ZERO;
+
+    private static Random rmd = new Random();
+
     public Deck() {
-        createDeck();
-        shuffle();
-    }
-
-    /**
-     * creates Cards
-     */
-    private void createDeck() {
-        for (int i = 0; i < SUITS.length; i++) {
-            for (int j = 0; j < RANKS.length; j++) {
-                this.fullDeck.add(RANKS[j] + "of" + SUITS[i]);
-            }
-        }
-    }
-
-    /**
-     * this method shuffles the cards and returns a mixed deck.
-     *
-     * @param fullDeck
-     * @return
-     */
-    private List<String> shuffle() {
-        Collections.shuffle(this.fullDeck);
-        return this.fullDeck;
-    }
-
-    /**
-     * displays the shuffeld Deck
-     */
-    public void showDeck() {
-        for (int i = 0; i < deckLength; i++) {
-            System.out.printf("%s ", this.fullDeck.get(i));
-        }
+        buildDeck();
     }
 
     public int getNumOfCards() {
-        return deckLength;
+        return numOfCards;
     }
 
     /**
-     * checks if deck is empty
-     *
-     * @return
+     * this method initializes the deck attributes.
      */
-    public boolean deckIsNotEmpty() {
-        return !fullDeck.isEmpty();
+    private void buildDeck() {
+        //Initialise size of deck and number of cards 
+        this.numOfCards = FIFTYTWO;
+        //create new Deck Array 
+        this.deck = new Card[this.numOfCards];
+        //Creates Deck deck 
+        createDeck();
+        //shuffles deck 
+        shuffleCards(deck);
     }
 
     /**
-     * deals first card of the deck
+     * Returns the deck.
      *
-     * @return
+     * @return deck
      */
-    public String dealCard() {
-        String result = fullDeck.get(0);
-        fullDeck.remove(0);
-        deckLength--;
-        return result;
+    public Card[] getDeck() {
+        return deck;
     }
+
+    private void createDeck() {
+         //create Deck 
+        //for each deck 
+        for (int i = ZERO; i < 1; i++) {
+            //for each suit 
+            for (int j = ZERO; j < FOUR; j++) {
+                //for each number 
+                for (int z = ONE; z <= THIRTEEN; z++) {
+                    //add new card to deck 
+                    this.deck[index] = new Card(Suit.values()[j], z);
+                    index++;
+                }
+            }
+        }
+    }
+        /**
+         * this method shuffles the cards and returns a mixed deck.
+         *
+         * @param myCards contains a ICard Array
+         */
+    private void shuffleCards(final Card[] myCards) {
+        Card tmp;
+        int rand;
+        for (int i = ZERO; i < myCards.length; i++) {
+            rand = rmd.nextInt(myCards.length);
+            tmp = myCards[i];
+            myCards[i] = myCards[rand];
+            myCards[rand] = tmp;
+        }
+    }
+
+    /**
+     * Deal next card from the top of the deck.
+     *
+     * @return top Card of the deck
+     */
+    public Card dealCard() {
+        //get the first card from top of the deck 
+        Card top = this.deck[ZERO];
+        //shift cards to the left, because we get the first one 
+        for (int i = ONE; i < this.numOfCards; i++) {
+            this.deck[i - ONE] = this.deck[i];
+        }
+        this.deck[this.numOfCards - ONE] = null;
+        //decrement the number of cards currently in the deck 
+        this.numOfCards--;
+
+        return top;
+    }
+
 }

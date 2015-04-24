@@ -1,6 +1,6 @@
 package bigkingscup.aview.TUI;
 
-import bigkingscup.controller.Controller;
+import bigkingscup.controller.impl.Controller;
 import bigkingscup.model.Deck;
 import bigkingscup.model.Player;
 import java.util.Scanner;
@@ -34,13 +34,7 @@ public class TUI {
         while (status) {
             switch (choice) {
                 case "c":
-                    //check if Player get new card
-                    if (controller.getDeck().deckIsNotEmpty()) {
-                        actualCard = controller.getDeck().dealCard();
-                        System.out.println(actualCard);
-                    } else {
-                        throw new Exception("Deck is empty!");
-                    }
+                    System.out.println(controller.getDeck().dealCard());
                     break;
                 case "n":
                     System.out.println("There are [" + controller.getDeck().getNumOfCards() + "] Cards left!");

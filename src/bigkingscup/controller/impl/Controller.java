@@ -1,7 +1,9 @@
-package bigkingscup.controller;
+package bigkingscup.controller.impl;
 
+import bigkingscup.controller.IGameState;
 import bigkingscup.model.Deck;
 import bigkingscup.model.Player;
+import bigkingscup.util.observer.Observable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,11 +12,12 @@ import java.util.Scanner;
  *
  * @author philippschultheiss
  */
-public class Controller {
+public class Controller extends Observable{
 
     private final List<Player> players = new ArrayList<>();
     private final Scanner scanner = new Scanner(System.in);
     private final Deck deck;
+    private IGameState currentState = null;
 
     public Controller() {
         this.deck = new Deck();
@@ -47,5 +50,19 @@ public class Controller {
     public void addPlayer(String name, String gender) {
         players.add(new Player(name, gender));
     }
+    
+     
+    public void setCurrentState(final IGameState state) { 
+         this.currentState = state; 
+         notifyObservers(); 
+    } 
 
+//    public void checkGameState() {
+//        if (this.currentState == null) {
+//            this.setCurrentState(new StateInGame(this));
+//            this.currentState.change();
+//        } else {
+//            //check if GameState will change
+//            this.currentState.change();
+//        }
 }
