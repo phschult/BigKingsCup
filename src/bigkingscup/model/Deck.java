@@ -16,7 +16,7 @@ public class Deck {
 
     // maximum number of cards
     private int deckLength = SUITS.length * RANKS.length;
-    private List<String> fullDeck = new ArrayList<>();
+    private final List<String> fullDeck = new ArrayList<>();
 
     /**
      * Constructor creates a new Deck
@@ -25,16 +25,18 @@ public class Deck {
         createDeck();
         shuffle();
     }
+
     /**
      * creates Cards
      */
-    private void createDeck(){
+    private void createDeck() {
         for (int i = 0; i < SUITS.length; i++) {
             for (int j = 0; j < RANKS.length; j++) {
                 this.fullDeck.add(RANKS[j] + "of" + SUITS[i]);
             }
         }
     }
+
     /**
      * this method shuffles the cards and returns a mixed deck.
      *
@@ -48,37 +50,35 @@ public class Deck {
 
     /**
      * displays the shuffeld Deck
-     *
-     * @param fullDeck
      */
     public void showDeck() {
         for (int i = 0; i < deckLength; i++) {
             System.out.printf("%s ", this.fullDeck.get(i));
         }
     }
+
+    public int getNumOfCards() {
+        return deckLength;
+    }
+
     /**
      * checks if deck is empty
-     * @return 
+     *
+     * @return
      */
-    public boolean deckIsNotEmpty(){
-        if(!fullDeck.isEmpty()){
-            return true;
-        } else {
-            return false;
-        }
+    public boolean deckIsNotEmpty() {
+        return !fullDeck.isEmpty();
     }
-    
+
     /**
      * deals first card of the deck
-     * @return 
+     *
+     * @return
      */
     public String dealCard() {
-        String result = null;
-        if (!fullDeck.isEmpty()) {
-           result = fullDeck.get(0);
-           fullDeck.remove(0);
-           deckLength--;
-        }
+        String result = fullDeck.get(0);
+        fullDeck.remove(0);
+        deckLength--;
         return result;
-        }
+    }
 }

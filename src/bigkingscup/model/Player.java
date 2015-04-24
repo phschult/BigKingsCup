@@ -25,10 +25,6 @@ public class Player {
         this.gender = gender;
     }
 
-    public void setPlayers(Player player) {
-        this.players.add(player);
-    }
-
     /**
      * Saves the cards drawn by the player.
      *
