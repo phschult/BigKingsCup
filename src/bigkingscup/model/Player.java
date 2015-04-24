@@ -20,11 +20,15 @@ public class Player {
 
     private final Map<String, Integer> stat = new TreeMap<>();
 
-    public Player(String name, String gender) {
+    public Player() {
+        
+    }
+    
+    public void setCharacteristics(String name, String gender) {
         this.name = name;
         this.gender = gender;
     }
-
+    
     /**
      * Saves the cards drawn by the player.
      *
