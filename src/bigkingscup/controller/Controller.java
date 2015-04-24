@@ -43,5 +43,9 @@ public class Controller {
             players.get(i).setCharacteristics(name, gender);
         }
     }
+    
+    public void addPlayer(String name, String gender) {
+        players.add(new Player(name, gender));
+    }
 
 }

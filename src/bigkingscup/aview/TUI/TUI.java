@@ -24,11 +24,11 @@ public class TUI {
         controller.createPlayers(anzPlayers);
         System.out.println("Select their Characteristics:");
         controller.setPlayersCharacteristics();
-        
+
         System.out.println("---------------- HELP ----------------");
-        System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "q - quit game\n");
+        System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "p - add a player\n" + "q - quit game\n");
         System.out.print("--> ");
-        
+
         String actualCard;
         String choice = scanner.next();
         while (status) {
@@ -43,18 +43,24 @@ public class TUI {
                     }
                     break;
                 case "n":
-                   System.out.println("There are [" + controller.getDeck().getNumOfCards() + "] Cards left!");
+                    System.out.println("There are [" + controller.getDeck().getNumOfCards() + "] Cards left!");
                     break;
+                case "p":
+                    System.out.print("Name: ");
+                    String name = scanner.next();
+                    System.out.print("Gender: ");
+                    String gender = scanner.next();
+                    controller.addPlayer(name, gender);
                 case "q":
                     status = false;
                     System.out.println("Goodbye!");
                     System.exit(1);
                     break;
-                 default:
+                default:
                     System.out.println("Wrong entry , please try again!");
             }
             System.out.println("---------------- HELP ----------------");
-            System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "q - quit game\n");
+            System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "p - add a player\n" + "q - quit game\n");
             System.out.print("--> ");
             choice = scanner.next();
         }
