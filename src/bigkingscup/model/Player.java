@@ -15,19 +15,18 @@ public class Player {
     private String gender;
     private int countCards;
     private final List<String> hand = new ArrayList<>();
-    private final List<String> number = new ArrayList<>();
+    private final List<String> genHand = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
+
     private final Map<String, Integer> stat = new TreeMap<>();
 
-    public Player() {
-
-    }
-
-    public void setName(String name) {
+    public Player(String name, String gender) {
         this.name = name;
+        this.gender = gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setPlayers(Player player) {
+        this.players.add(player);
     }
 
     /**
@@ -38,7 +37,11 @@ public class Player {
     public void setHand(String card) {
         this.hand.add(card);
     }
-
+    
+    public List<Player> getPlayers() {
+        return players;
+    }
+     
     /**
      * returns the players hand.
      *
@@ -76,24 +79,24 @@ public class Player {
             //Case Number
             if (compare(hand.get(i), 1)) {
                 //abeschneiden und in extra Liste number schreiben.
-                number.add(hand.get(i).substring(0, 1));
+                genHand.add(hand.get(i).substring(0, 1));
                 //Case ASS
             } else if (compare(hand.get(i), 3)) {
-                number.add(hand.get(i).substring(0, 3));
+                genHand.add(hand.get(i).substring(0, 3));
                 //Case KING, JACK
             } else if (compare(hand.get(i), 4)) {
-                number.add(hand.get(i).substring(0, 4));
+                genHand.add(hand.get(i).substring(0, 4));
                 //Case QUEEN
             } else if (compare(hand.get(i), 5)) {
-                number.add(hand.get(i).substring(0, 5));
+                genHand.add(hand.get(i).substring(0, 5));
             }
             //Vergleiche jede Karte auf der Hand mit den anderen und zähle wie
             //viele gleiche Karten sich auf der Hand befinden
-            for (int j = 0; j < number.size(); j++) {
-                for (int z = 0; z < number.size(); z++) {
-                    if (number.get(j).equals(number.get(z))) {
+            for (int j = 0; j < genHand.size(); j++) {
+                for (int z = 0; z < genHand.size(); z++) {
+                    if (genHand.get(j).equals(genHand.get(z))) {
+                        stat.put(genHand.get(i), countCards);
                         countCards++;
-                        stat.put(number.get(i), countCards);
                     }
                 }
             }
