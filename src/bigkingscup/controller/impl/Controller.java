@@ -60,7 +60,6 @@ public class Controller extends Observable {
 
         String[] parts = value.split("Of");
         String temp = parts[0]; 
-        System.out.println(temp);
         
         switch (temp) {
             case "Two":

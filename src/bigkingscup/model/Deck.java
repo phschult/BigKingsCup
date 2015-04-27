@@ -9,8 +9,6 @@ import java.util.Random;
  */
 public class Deck {
 
-    
-
     private Card[] deck;
     /**
      * Number of cards currently in the deck.
@@ -69,6 +67,7 @@ public class Deck {
             }
         }
     }
+    
         /**
          * this method shuffles the cards and returns a mixed deck.
          *
