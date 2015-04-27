@@ -2,6 +2,8 @@ package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
 import bigkingscup.model.Card;
+import bigkingscup.model.Player;
+import bigkingscup.model.Suit;
 import java.util.Scanner;
 
 /**
@@ -19,6 +21,7 @@ public class TUI {
         Controller controller = new Controller();
         //----------------------------------------------------------------------
         //----------------------------------------------------------------------
+        
         System.out.println("---------------- HELP ----------------");
         System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "p - add a player\n" + "q - quit game\n");
         System.out.print("--> ");
