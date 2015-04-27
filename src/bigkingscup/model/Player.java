@@ -1,6 +1,5 @@
 package bigkingscup.model;
 
-import static bigkingscup.util.util.StaticCollection.MAXCARDS;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,28 +11,34 @@ public class Player {
 
     private String name;
     private String gender;
-    private int numOfCards;
-    private Card[] playerHand;
-    private List<Card> playerHand1 = new LinkedList<>();
+    private List<Card> playerHand = new LinkedList<>();
 
     public Player() {
         //this.playerHand = new Card[MAXCARDS];
-        this.playerHand1 = new LinkedList<>();
+        this.playerHand = new LinkedList<>();
     }
 
     public Player(String name, String gender) {
         //this.playerHand = new Card[MAXCARDS];
-        this.playerHand1 = new LinkedList<>();
+        this.playerHand = new LinkedList<>();
         this.name = name;
         this.gender = gender;
     }
-
+    
+    private void setName(String name) {
+        this.name = name;
+    }
+    
+    private void setGender(String gender) {
+        this.gender = gender;
+    }
+    
     public String getName() {
         return this.name;
     }
     
-    public int getSizeHand() {
-        return playerHand1.size();
+    public int getNumOfCards() {
+        return playerHand.size();
     }
     public String getGender() {
         return this.gender;
@@ -43,16 +48,15 @@ public class Player {
      * Reset players hand.
      */
     public void clearHand() {
-        this.playerHand = new Card[MAXCARDS];
-        this.numOfCards = 0;
+        this.playerHand = new LinkedList<>();
     }
 
     public void add(final Card card) {
-        playerHand1.add(card);
+        playerHand.add(card);
     }
 
     public void printPlayersHand() {
-        System.out.println(playerHand1);
+        System.out.println(playerHand);
     }
 
 }
