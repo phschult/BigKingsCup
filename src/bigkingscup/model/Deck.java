@@ -9,13 +9,9 @@ import java.util.Random;
 public class Deck {
 
     private static final int FIFTYTWO = 52;
-
     private static final int ONE = 1;
-
     private static final int FOUR = 4;
-
     private static final int ZERO = 0;
-
     private static final int THIRTEEN = 13;
 
     private Card[] deck;
@@ -28,7 +24,7 @@ public class Deck {
      */
     private int index = ZERO;
 
-    private static Random rmd = new Random();
+    private final static Random rmd = new Random();
 
     public Deck() {
         buildDeck();
@@ -62,7 +58,7 @@ public class Deck {
     }
 
     private void createDeck() {
-         //create Deck 
+        //create Deck 
         //for each deck 
         for (int i = ZERO; i < 1; i++) {
             //for each suit 

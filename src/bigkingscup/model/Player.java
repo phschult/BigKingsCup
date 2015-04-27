@@ -46,7 +46,7 @@ public class Player {
             if (card == null) {
                 break;
             }
-            sb.append(card).append(" ");
+              sb.append(card).append(" ");
         }
         return sb.toString();
     }
