@@ -18,10 +18,6 @@ public class TUI {
         System.out.println("---------------- Welcome to Big Kings Cup ----------------\n");
         Controller controller = new Controller();
         //----------------------------------------------------------------------
-        controller.addPlayer("Philipp", "M");
-        controller.addPlayer("Anne", "W");
-        
-        controller.printPlayers();
         //----------------------------------------------------------------------
         System.out.println("---------------- HELP ----------------");
         System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "p - add a player\n" + "q - quit game\n");
@@ -41,7 +37,7 @@ public class TUI {
                 case "p":
                     System.out.print("Name: ");
                     String name = scanner.next();
-                    System.out.print("Gender: ");
+                    System.out.print("Gender [M/W]: ");
                     String gender = scanner.next();
                     controller.addPlayer(name, gender);
                     break;

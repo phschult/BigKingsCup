@@ -20,11 +20,6 @@ public class Player {
         this.gender = gender;
     }
 
-    public void setCharacteristics(String name, String gender) {
-        this.name = name;
-        this.gender = gender;
-    }
-
     public String getName() {
         return this.name;
     }
@@ -40,6 +35,9 @@ public class Player {
     }
 
     public String printPlayersHand() {
+        if(playerHand.length == 0) {
+            throw new IndexOutOfBoundsException("Spieler hat keine Karte auf der Hand!");
+        }
         StringBuilder sb = new StringBuilder();
         sb.append(getName()).append(": ");
         for (Card card : playerHand) {
