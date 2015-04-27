@@ -2,8 +2,6 @@ package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
 import bigkingscup.model.Card;
-import bigkingscup.model.Player;
-import bigkingscup.model.Suit;
 import java.util.Scanner;
 
 /**
@@ -21,15 +19,16 @@ public class TUI {
         Controller controller = new Controller();
         //----------------------------------------------------------------------
         //----------------------------------------------------------------------
-        
+
         System.out.println("---------------- HELP ----------------");
-        System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "p - add a player\n" + "q - quit game\n");
+        System.out.println("d - deal card\n" + "n - number of remaining cards\n"
+                + "p - add a player\n" + "h - display Gamers\n" + "q - quit game\n");
         System.out.print("--> ");
 
         String choice = scanner.next();
         while (status) {
-        switch (choice) {
-                case "c":
+            switch (choice) {
+                case "d":
                     actualCard = controller.getDeck().dealCard();
                     controller.getPlayer().add(actualCard);
                     System.out.println(actualCard);
@@ -57,7 +56,8 @@ public class TUI {
                     break;
             }
             System.out.println("---------------- HELP ----------------");
-            System.out.println("c - deal card\n" + "n - number of remaining cards\n" + "p - add a player\n" + "q - quit game\n");
+            System.out.println("d - deal card\n" + "n - number of remaining cards\n"
+                    + "p - add a player\n" + "h - display Gamers\n" + "q - quit game\n");
             System.out.print("--> ");
             choice = scanner.next();
         }

@@ -13,10 +13,10 @@ import java.util.TreeMap;
  * @author schphil
  */
 public class Card {
-    private Suit suit;
-    private int number;
+    private final Suit suit;
+    private final int number;
     private int i;
-    private final Map<Integer, String> cards = new TreeMap<>();
+    private static final Map<Integer, String> cards = new TreeMap<>();
     
     public Card(final Suit aSuit, final int aNumber) {
         this.suit = aSuit;

@@ -10,10 +10,12 @@ public class Ringbuffer {
 
     Player[] ring;
     private int usedSize = 0;
-    private int size = 0;
+    //private int size = 0;
     private int getIndex = 0;
     private int putIndex = 0;
     final static int DEFAULTSIZE = 12;
+    private int index;
+    private int size;
 
     public Ringbuffer(int size) {
         this.size = size;
@@ -34,13 +36,17 @@ public class Ringbuffer {
     }
 
     public Player get() throws IndexOutOfBoundsException {
-        usedSize--;
-        if (usedSize < 0) {
-            throw new IndexOutOfBoundsException("Ringbuffer schon leer");
-        }
-        Player ret = ring[getIndex];
-        getIndex = (getIndex + 1) % size;
-        return ret;
+        index = index + 1;
+        index = index % size;
+        return ring[index];
+
+//        usedSize--;
+//        if (usedSize < 0) {
+//            throw new IndexOutOfBoundsException("Ringbuffer schon leer");
+//        }
+//        Player ret = ring[getIndex];
+//        getIndex = (getIndex + 1) % size;
+//        return ret;
     }
 
     public int getSize() {
