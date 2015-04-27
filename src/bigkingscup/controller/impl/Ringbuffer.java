@@ -1,6 +1,7 @@
 package bigkingscup.controller.impl;
 
 import bigkingscup.model.Player;
+import java.util.LinkedList;
 
 /**
  *
@@ -8,52 +9,31 @@ import bigkingscup.model.Player;
  */
 public class Ringbuffer {
 
-    Player[] ring;
-    private int usedSize = 0;
-    //private int size = 0;
-    private int getIndex = 0;
-    private int putIndex = 0;
-    final static int DEFAULTSIZE = 12;
-    private int index;
-    private int size;
 
-    public Ringbuffer(int size) {
-        this.size = size;
-        ring = new Player[this.size];
-    }
+    LinkedList<Player> ring;
+    private int index = 0;
 
     public Ringbuffer() {
-        this(DEFAULTSIZE);
+        this.ring = new LinkedList<>();
     }
 
-    public void put(Player player) throws IndexOutOfBoundsException {
-        usedSize++;
-        if (usedSize > size) {
-            throw new IndexOutOfBoundsException("Ringbufferüberlauf");
-        }
-        ring[putIndex] = player;
-        putIndex = (putIndex + 1) % size;
+    public void put(Player player) {
+         ring.add(player);
     }
 
     public Player get() throws IndexOutOfBoundsException {
-        index = index + 1;
-        index = index % size;
-        return ring[index];
-
-//        usedSize--;
-//        if (usedSize < 0) {
-//            throw new IndexOutOfBoundsException("Ringbuffer schon leer");
-//        }
-//        Player ret = ring[getIndex];
-//        getIndex = (getIndex + 1) % size;
-//        return ret;
+        Player foo = ring.get(index);
+        index = index +1;
+        index = index % ring.size();
+        return foo;
     }
 
     public int getSize() {
-        return size;
+        return ring.size();
     }
 
     public boolean isEmpty() {
-        return usedSize == 0;
+        return ring.isEmpty();
     }
 }
+
