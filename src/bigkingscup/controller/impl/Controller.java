@@ -20,8 +20,8 @@ public class Controller extends Observable{
         this.rBuffer = new Ringbuffer();
     }
     
-    public void addPlayer(Player player) {
-        rBuffer.put(player);
+    public void addPlayer(final String name, final String gender) {
+        rBuffer.put(new Player(name, gender));
     }
     
     public Player getPlayer() {
@@ -30,6 +30,14 @@ public class Controller extends Observable{
     
     public Deck getDeck() {
         return deck;
+    }
+    
+    public String printPlayers() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 12; i++) {
+            sb.append(rBuffer.get()).append(", ");
+        }
+        return sb.toString();
     }
 
     public void setCurrentState(final IGameState state) { 
