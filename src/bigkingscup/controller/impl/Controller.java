@@ -15,6 +15,7 @@ public class Controller extends Observable {
     private final Deck deck;
     private final Ringbuffer rBuffer;
     private IGameState currentState = null;
+    private String statusFlag;
 
     public Controller() {
         this.deck = new Deck();
