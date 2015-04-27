@@ -15,7 +15,7 @@ public class TUI {
     private boolean status = true;
 
     public TUI() throws Exception {
-        System.out.println("---------------- Welcome to Big Kings Cup ----------------\n");
+        System.out.println("------ Welcome to Big Kings Cup ------\n");
         Controller controller = new Controller();
         //----------------------------------------------------------------------
         //----------------------------------------------------------------------
@@ -30,8 +30,9 @@ public class TUI {
             switch (choice) {
                 case "d":
                     actualCard = controller.getDeck().dealCard();
-                    controller.getPlayer().add(actualCard);
                     System.out.println(actualCard);
+                    controller.doTask(actualCard);
+                    controller.getPlayer().add(actualCard);
                     break;
                 case "n":
                     System.out.println("There are [" + controller.getDeck().getNumOfCards() + "] Cards left!");
@@ -55,6 +56,8 @@ public class TUI {
                     System.out.println("Wrong entry , please try again!");
                     break;
             }
+            controller.checkDeckState();
+            
             System.out.println("---------------- HELP ----------------");
             System.out.println("d - deal card\n" + "n - number of remaining cards\n"
                     + "p - add a player\n" + "h - display Gamers\n" + "q - quit game\n");

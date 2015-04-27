@@ -33,7 +33,14 @@ public class Controller extends Observable {
     public Deck getDeck() {
         return deck;
     }
-
+    
+    public void checkDeckState() {
+        if(this.getDeck().getNumOfCards() == 0) {
+            System.out.println("Game Over. There are no more cards on the Stack");
+            System.exit(1);
+        }
+    }
+    
     public String printPlayers() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 12; i++) {
@@ -49,28 +56,51 @@ public class Controller extends Observable {
 
     public void doTask(Card card) {
         String value = card.toString();
-        String temp = null;
-        if (value.charAt(2) == 'o') {
-            temp = value.substring(0, 2);
-        } else if (value.charAt(4) == 'o') {
-            temp = value.substring(0, 3);
-        } else if (value.charAt(6) == 'o') {
-            temp = value.substring(0, 6);
-        }
+
+        String[] parts = value.split("Of");
+        String temp = parts[0]; 
+        System.out.println(temp);
+        
         switch (temp) {
             case "Two":
+                System.out.println("Kategorie");
+                break;
             case "Three":
+                System.out.println("Reim");
+                break;
             case "Four":
+                System.out.println("Questionmaster");
+                break;
             case "Five":
+                System.out.println("Regel");
+                break;
             case "Six":
+                System.out.println("Ich habe noch nie...");
+                break;
             case "Seven":
+                System.out.println("Schlücke verteilen");
+                break;
             case "Eight":
+                System.out.println("Partner");
+                break;
             case "Nine":
+                System.out.println("Mädchen");
+                break;
             case "Ten":
+                System.out.println("Jungs");
+                break;
             case "Jack":
+                System.out.println("Bube");
+                break;
             case "Queen":
+                System.out.println("Königin");
+                break;
             case "King":
+                System.out.println("König");
+                break;
             case "Ace":
+                System.out.println("Alle müssen trinken");
+                break;
             default:
         }
     }
