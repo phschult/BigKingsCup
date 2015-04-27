@@ -1,5 +1,8 @@
 package bigkingscup.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author philippschultheiss
@@ -10,14 +13,17 @@ public class Player {
     private String gender;
     private int numOfCards;
     private Card[] playerHand;
+    private List<Card> playerHand1 = new LinkedList<>();
     private static final int MAXCARDS = 52;
 
     public Player() {
-        this.playerHand = new Card[MAXCARDS];
+        //this.playerHand = new Card[MAXCARDS];
+        this.playerHand1 = new LinkedList<>();
     }
 
     public Player(String name, String gender) {
-        this.playerHand = new Card[MAXCARDS];
+        //this.playerHand = new Card[MAXCARDS];
+        this.playerHand1 = new LinkedList<>();
         this.name = name;
         this.gender = gender;
     }
@@ -25,7 +31,10 @@ public class Player {
     public String getName() {
         return this.name;
     }
-
+    
+    public int getSizeHand() {
+        return playerHand1.size();
+    }
     public String getGender() {
         return this.gender;
     }
@@ -39,29 +48,11 @@ public class Player {
     }
 
     public void add(final Card card) {
-        if (this.numOfCards == MAXCARDS) {
-            throw new IndexOutOfBoundsException("Bitte Array anpassen."
-                    + "Max. Anzahl Karten auf der Hand wurde erreicht!");
-        }
-        // add Card to Player 
-        this.playerHand[this.numOfCards] = card;
-        this.numOfCards++;
+        playerHand1.add(card);
     }
 
-    public String printPlayersHand() {
-        if (playerHand.length == 0) {
-            throw new IndexOutOfBoundsException("Spieler hat keine Karte "
-                    + "auf der Hand!");
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(getName()).append(": ");
-        for (Card card : playerHand) {
-            if (card == null) {
-                break;
-            }
-            sb.append(card).append(" ");
-        }
-        return sb.toString();
+    public void printPlayersHand() {
+        System.out.println(playerHand1);
     }
 
 }
