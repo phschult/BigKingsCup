@@ -1,5 +1,6 @@
 package bigkingscup.model;
 
+import static bigkingscup.util.util.StaticCollection.MAXCARDS;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,6 @@ public class Player {
     private int numOfCards;
     private Card[] playerHand;
     private List<Card> playerHand1 = new LinkedList<>();
-    private static final int MAXCARDS = 52;
 
     public Player() {
         //this.playerHand = new Card[MAXCARDS];

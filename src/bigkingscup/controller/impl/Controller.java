@@ -5,6 +5,7 @@ import bigkingscup.model.Card;
 import bigkingscup.model.Deck;
 import bigkingscup.model.Player;
 import bigkingscup.util.observer.Observable;
+import static bigkingscup.util.StaticCollection.*;
 
 /**
  *
@@ -43,7 +44,7 @@ public class Controller extends Observable {
     
     public String printPlayers() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 12; i++) {
+        for (int i = ZERO; i < TWELVE; i++) {
             sb.append(rBuffer.get()).append(", ");
         }
         return sb.toString();

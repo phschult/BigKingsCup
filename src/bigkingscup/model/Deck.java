@@ -1,5 +1,6 @@
 package bigkingscup.model;
 
+import static bigkingscup.util.StaticCollection.*;
 import java.util.Random;
 
 /**
@@ -8,11 +9,7 @@ import java.util.Random;
  */
 public class Deck {
 
-    private static final int FIFTYTWO = 52;
-    private static final int ONE = 1;
-    private static final int FOUR = 4;
-    private static final int ZERO = 0;
-    private static final int THIRTEEN = 13;
+    
 
     private Card[] deck;
     /**
