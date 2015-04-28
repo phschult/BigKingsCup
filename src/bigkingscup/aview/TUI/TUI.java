@@ -18,6 +18,7 @@ public class TUI {
         System.out.println("------ Welcome to Big Kings Cup ------\n");
         Controller controller = new Controller();
         //----------------------------------------------------------------------
+
         //----------------------------------------------------------------------
 
         System.out.println("---------------- HELP ----------------");

@@ -1,46 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bigkingscup.model;
-
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  *
- * @author schphil
+ * @author philippschultheiss
  */
 public class Card {
     private final Suit suit;
-    private final int number;
-    private int i;
-    private static final Map<Integer, String> cards = new TreeMap<>();
+    private final Rank rank;
     
-    public Card(final Suit aSuit, final int aNumber) {
+     public Card(final Suit aSuit, final Rank aRank) {
         this.suit = aSuit;
-        this.number = aNumber;
-        createCards();
+        this.rank = aRank;
     }
-    
-    public int getNumber() {
-        return number;
-    }
-    
-    private void createCards(){
-        String [] values = new String[]{"Ace", "Two", "Three", "Four", "Five", 
-             "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", 
-             "Ace"}; 
-        for(String value : values) {
-            insertCardValues(value);
-        }
-    }
-    
-    private void insertCardValues(final String num) {
-        cards.put(i, num);
-        i++;
-    }
+     
     
     public Suit getSuit(){
         return this.suit;
@@ -48,6 +20,6 @@ public class Card {
     
     @Override
     public String toString() {
-        return cards.get(number) + "Of" + suit.toString();
+        return rank.toString() + "Of" + suit.toString();
     }
 }

@@ -13,5 +13,5 @@ public enum Suit {
     CLUPS,
     DIAMONDS,
     SPADES,
-    HEARTS
+    HEARTS;
 }

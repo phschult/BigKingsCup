@@ -25,6 +25,15 @@ public class Deck {
         buildDeck();
     }
 
+    public void createDeck(Suit[] aSuit, Rank[] aRank) {
+        for (int i = 0; i < aSuit.length; i++) {
+            for (int j = 0; j < aRank.length; j++) {
+                this.deck[index] = new Card(Suit.values()[i], Rank.values()[j]);
+                index++;
+            }
+        }
+    }
+
     public int getNumOfCards() {
         return numOfCards;
     }
@@ -38,9 +47,10 @@ public class Deck {
         //create new Deck Array 
         this.deck = new Card[this.numOfCards];
         //Creates Deck deck 
-        createDeck();
+        createDeck(Suit.values(), Rank.values());
         //shuffles deck 
         shuffleCards(deck);
+
     }
 
     /**
@@ -52,27 +62,11 @@ public class Deck {
         return deck;
     }
 
-    private void createDeck() {
-        //create Deck 
-        //for each deck 
-        for (int i = ZERO; i < 1; i++) {
-            //for each suit 
-            for (int j = ZERO; j < FOUR; j++) {
-                //for each number 
-                for (int z = ONE; z <= THIRTEEN; z++) {
-                    //add new card to deck 
-                    this.deck[index] = new Card(Suit.values()[j], z);
-                    index++;
-                }
-            }
-        }
-    }
-    
-        /**
-         * this method shuffles the cards and returns a mixed deck.
-         *
-         * @param myCards contains a ICard Array
-         */
+    /**
+     * this method shuffles the cards and returns a mixed deck.
+     *
+     * @param myCards contains a ICard Array
+     */
     private void shuffleCards(final Card[] myCards) {
         Card tmp;
         int rand;
