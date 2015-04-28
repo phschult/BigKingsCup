@@ -1,5 +1,8 @@
 package bigkingscup.model;
 
+import bigkingscup.util.Suit;
+import bigkingscup.util.Rank;
+
 /**
  *
  * @author philippschultheiss

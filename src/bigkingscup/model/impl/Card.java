@@ -1,6 +1,8 @@
 package bigkingscup.model.impl;
 
 import bigkingscup.model.ICard;
+import bigkingscup.util.Rank;
+import bigkingscup.util.Suit;
 
 /**
  *

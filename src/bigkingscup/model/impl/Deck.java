@@ -2,7 +2,9 @@ package bigkingscup.model.impl;
 
 import bigkingscup.model.ICard;
 import bigkingscup.model.IDeck;
+import bigkingscup.util.Rank;
 import static bigkingscup.util.StaticCollection.*;
+import bigkingscup.util.Suit;
 import java.util.Random;
 
 /**
@@ -50,7 +52,7 @@ public class Deck implements IDeck {
      private void createDeck(Suit[] aSuit, Rank[] aRank) {
         for (int i = 0; i < aSuit.length; i++) {
             for (int j = 0; j < aRank.length; j++) {
-                this.deck[index] = new Card(Suit.values()[i], Rank.values()[j]); //error occurrs here, The type of Card(Suit,Rank) is erroneous
+                this.deck[index] = new Card(aSuit[i], aRank[j]); //error occurrs here, The type of Card(Suit,Rank) is erroneous
                 index++;
             }
         }

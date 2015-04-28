@@ -1,4 +1,4 @@
-package bigkingscup.model;
+package bigkingscup.util;
 
 /**
  *
