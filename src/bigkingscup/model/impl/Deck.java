@@ -50,7 +50,7 @@ public class Deck implements IDeck {
      private void createDeck(Suit[] aSuit, Rank[] aRank) {
         for (int i = 0; i < aSuit.length; i++) {
             for (int j = 0; j < aRank.length; j++) {
-                this.deck[index] = new Card(Suit.values()[i], Rank.values()[j]);
+                this.deck[index] = new Card(Suit.values()[i], Rank.values()[j]); //error occurrs here
                 index++;
             }
         }
