@@ -42,6 +42,10 @@ public class Controller extends Observable {
             System.exit(1);
         }
     }
+    private void setStatusFlag(String flag) {
+        this.statusFlag = flag;
+        notifyObservers();
+    }
     
     public String printPlayers() {
         StringBuilder sb = new StringBuilder();
@@ -65,42 +69,55 @@ public class Controller extends Observable {
         switch (temp) {
             case "Two":
                 System.out.println("Kategorie");
+                setStatusFlag("Kategorie");
                 break;
             case "Three":
                 System.out.println("Reim");
+                setStatusFlag("Reim");
                 break;
             case "Four":
                 System.out.println("Questionmaster");
+                setStatusFlag("Questionmaster");
                 break;
             case "Five":
                 System.out.println("Regel");
+                setStatusFlag("Regel");
                 break;
             case "Six":
                 System.out.println("Ich habe noch nie...");
+                setStatusFlag("Ich habe noch nie...");
                 break;
             case "Seven":
                 System.out.println("Schlücke verteilen");
+                setStatusFlag("Schlücke verteilen");
                 break;
             case "Eight":
                 System.out.println("Partner");
+                setStatusFlag("Partner");
                 break;
             case "Nine":
                 System.out.println("Mädchen");
+                setStatusFlag("Mädchen");
                 break;
             case "Ten":
                 System.out.println("Jungs");
+                setStatusFlag("Jungs");
                 break;
             case "Jack":
                 System.out.println("Bube");
+                setStatusFlag("Bube");
                 break;
             case "Queen":
                 System.out.println("Königin");
+                setStatusFlag("Königin");
                 break;
             case "King":
                 System.out.println("König");
+                setStatusFlag("König");
                 break;
             case "Ace":
                 System.out.println("Alle müssen trinken");
+                setStatusFlag("Alle müssen trinken");
                 break;
             default:
         }

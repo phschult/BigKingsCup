@@ -47,6 +47,7 @@ public class TUI {
                     controller.addPlayer(name, gender);
                     break;
                 case "h":
+                    controller.printPlayers();
                     controller.getPlayer().printPlayersHand();
                     break;
                 case "q":

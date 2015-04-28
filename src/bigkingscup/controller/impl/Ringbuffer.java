@@ -9,31 +9,30 @@ import java.util.LinkedList;
  */
 public class Ringbuffer {
 
-
-    LinkedList<Player> ring;
+    private final LinkedList<Player> buffer;
     private int index = 0;
 
     public Ringbuffer() {
-        this.ring = new LinkedList<>();
+        this.buffer = new LinkedList<>();
     }
 
     public void put(Player player) {
-         ring.add(player);
+         buffer.add(player);
     }
 
     public Player get() throws IndexOutOfBoundsException {
-        Player foo = ring.get(index);
+        Player foo = buffer.get(index);
         index = index +1;
-        index = index % ring.size();
+        index = index % buffer.size();
         return foo;
     }
 
     public int getSize() {
-        return ring.size();
+        return buffer.size();
     }
 
     public boolean isEmpty() {
-        return ring.isEmpty();
+        return buffer.isEmpty();
     }
 }
 
