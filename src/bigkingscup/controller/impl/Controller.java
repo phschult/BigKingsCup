@@ -1,9 +1,10 @@
 package bigkingscup.controller.impl;
 
 import bigkingscup.controller.IGameState;
-import bigkingscup.model.Card;
-import bigkingscup.model.Deck;
-import bigkingscup.model.Player;
+import bigkingscup.model.ICard;
+import bigkingscup.model.IDeck;
+import bigkingscup.model.impl.Deck;
+import bigkingscup.model.impl.Player;
 import bigkingscup.util.observer.Observable;
 import static bigkingscup.util.StaticCollection.*;
 
@@ -13,7 +14,7 @@ import static bigkingscup.util.StaticCollection.*;
  */
 public class Controller extends Observable {
 
-    private final Deck deck;
+    private final IDeck deck;
     private final Ringbuffer rBuffer;
     private IGameState currentState = null;
     private String statusFlag;
@@ -31,7 +32,7 @@ public class Controller extends Observable {
         return rBuffer.get();
     }
 
-    public Deck getDeck() {
+    public IDeck getDeck() {
         return deck;
     }
     
@@ -55,7 +56,7 @@ public class Controller extends Observable {
         notifyObservers();
     }
 
-    public void doTask(Card card) {
+    public void doTask(ICard card) {
         String value = card.toString();
 
         String[] parts = value.split("Of");

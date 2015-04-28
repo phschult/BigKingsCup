@@ -1,6 +1,6 @@
 package bigkingscup.controller.impl;
 
-import bigkingscup.model.Player;
+import bigkingscup.model.impl.Player;
 import java.util.LinkedList;
 
 /**

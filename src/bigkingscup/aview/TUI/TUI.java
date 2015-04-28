@@ -1,7 +1,7 @@
 package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
-import bigkingscup.model.Card;
+import bigkingscup.model.ICard;
 import java.util.Scanner;
 
 /**
@@ -11,15 +11,12 @@ import java.util.Scanner;
 public class TUI {
 
     public static Scanner scanner = new Scanner(System.in);
-    private Card actualCard;
+    private ICard actualCard;
     private boolean status = true;
 
     public TUI() throws Exception {
         System.out.println("------ Welcome to Big Kings Cup ------\n");
         Controller controller = new Controller();
-        //----------------------------------------------------------------------
-
-        //----------------------------------------------------------------------
 
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"

@@ -1,10 +1,12 @@
-package bigkingscup.model;
+package bigkingscup.model.impl;
+
+import bigkingscup.model.ICard;
 
 /**
  *
  * @author philippschultheiss
  */
-public class Card {
+public class Card implements ICard{
     private final Suit suit;
     private final Rank rank;
     
@@ -13,9 +15,14 @@ public class Card {
         this.rank = aRank;
     }
      
-    
+    @Override
     public Suit getSuit(){
         return this.suit;
+    }
+    
+    @Override
+    public Rank getRank() {
+        return this.rank;
     }
     
     @Override
