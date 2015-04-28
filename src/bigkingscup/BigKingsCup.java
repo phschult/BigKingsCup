@@ -14,5 +14,6 @@ public class BigKingsCup {
      */
     public static void main(String[] args) throws Exception {
         TUI tui = new TUI();
+        tui.processInputLine();
     }
 }

@@ -10,13 +10,17 @@ import java.util.Scanner;
  */
 public class TUI {
 
+    private final Controller controller;
     public static Scanner scanner = new Scanner(System.in);
     private ICard actualCard;
     private boolean status = true;
 
-    public TUI() throws Exception {
+    public TUI() {
+        this.controller = new Controller();
+    }
+
+    public void processInputLine() {
         System.out.println("------ Welcome to Big Kings Cup ------\n");
-        Controller controller = new Controller();
 
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
@@ -55,7 +59,7 @@ public class TUI {
                     break;
             }
             controller.checkDeckState();
-            
+
             System.out.println("---------------- HELP ----------------");
             System.out.println("d - deal card\n" + "n - number of remaining cards\n"
                     + "p - add a player\n" + "h - display Gamers\n" + "q - quit game\n");
