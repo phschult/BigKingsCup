@@ -45,6 +45,7 @@ public class Ringbuffer {
     }
     
     public Player get() throws IndexOutOfBoundsException {
+        //return actualPlayer;
         Player foo = buffer.get(index);
         index = index +1;
         index = index % buffer.size();
