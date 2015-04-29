@@ -1,7 +1,6 @@
 package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
-import bigkingscup.model.ICard;
 import java.util.Scanner;
 
 /**
@@ -12,7 +11,6 @@ public class TUI {
 
     private final Controller controller;
     public static Scanner scanner = new Scanner(System.in);
-    private ICard actualCard;
     private boolean status = true;
 
     public TUI() {
@@ -31,10 +29,10 @@ public class TUI {
         while (status) {
             switch (choice) {
                 case "d":
-                    actualCard = controller.getDeck().dealCard();
-                    System.out.println(actualCard);
-                    controller.doTask(actualCard);
-                    controller.getPlayer().add(actualCard);
+                    controller.setActualCard(controller.getDeck().dealCard());
+                    System.out.println(controller.getActualCard());
+                    controller.doTask(controller.getActualCard());
+                    controller.getPlayer().addCard(controller.getActualCard());
                     break;
                 case "n":
                     System.out.println("There are [" + controller.getDeck().getNumOfCards() + "] Cards left!");
@@ -47,7 +45,7 @@ public class TUI {
                     controller.addPlayer(name, gender);
                     break;
                 case "h":
-                    controller.printPlayers();
+                    System.out.println(controller.printPlayers());
                     controller.getPlayer().printPlayersHand();
                     break;
                 case "q":

@@ -56,13 +56,13 @@ public class Player implements IPlayer{
     }
 
     @Override
-    public void add(final ICard card) {
+    public void addCard(final ICard card) {
         playerHand.add(card);
     }
 
     @Override
     public void printPlayersHand() {
-        System.out.println(playerHand);
+        System.out.println("Hand: " + playerHand);
     }
 
 }

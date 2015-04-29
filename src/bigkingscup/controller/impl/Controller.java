@@ -16,6 +16,7 @@ public class Controller extends Observable {
 
     private final IDeck deck;
     private final Ringbuffer rBuffer;
+    private ICard actualCard;
     private IGameState currentState = null;
     private String statusFlag;
 
@@ -27,7 +28,11 @@ public class Controller extends Observable {
     public void addPlayer(final String name, final String gender) {
         rBuffer.put(new Player(name, gender));
     }
-
+    
+    public ICard getActualCard() {
+        return this.actualCard;
+    }
+    
     public Player getPlayer() {
         return rBuffer.get();
     }
@@ -42,6 +47,12 @@ public class Controller extends Observable {
             System.exit(1);
         }
     }
+    
+    public void setActualCard(ICard card) {
+        this.actualCard = card;
+        //notifyObservers();
+    }
+    
     private void setStatusFlag(String flag) {
         this.statusFlag = flag;
         notifyObservers();
@@ -49,8 +60,8 @@ public class Controller extends Observable {
     
     public String printPlayers() {
         StringBuilder sb = new StringBuilder();
-        for (int i = ZERO; i < TWELVE; i++) {
-            sb.append(rBuffer.get()).append(", ");
+        for (int i = ZERO; i < rBuffer.getSize(); i++) {
+            sb.append("Name: ").append(rBuffer.get().getName()).append(" ");
         }
         return sb.toString();
     }
