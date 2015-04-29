@@ -15,11 +15,23 @@ public class Ringbuffer {
     public Ringbuffer() {
         this.buffer = new LinkedList<>();
     }
-
+    
     public void put(Player player) {
          buffer.add(player);
     }
-
+    
+    public void nextPlayer() {
+        index++;
+        if(index > buffer.size()) {
+            index = 1;
+        }
+    }
+    
+    /**
+     * 
+     * @return
+     * @throws IndexOutOfBoundsException 
+     */
     public Player get() throws IndexOutOfBoundsException {
         Player foo = buffer.get(index);
         index = index +1;
