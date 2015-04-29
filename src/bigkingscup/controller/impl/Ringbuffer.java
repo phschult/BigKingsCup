@@ -20,6 +20,14 @@ public class Ringbuffer {
          buffer.add(player);
     }
     
+    public void removePlayer(String player) {
+        for (int i = 0; i < buffer.size(); i++) {
+            if(player.equals(buffer.get(i).getName())) {
+                buffer.remove(i);
+            } 
+        }
+    }
+    
     public void nextPlayer() {
         index++;
         if(index > buffer.size()) {
