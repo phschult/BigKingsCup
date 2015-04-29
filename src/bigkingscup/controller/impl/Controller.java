@@ -75,7 +75,7 @@ public class Controller extends Observable {
         notifyObservers();
     }
     public void printHelpMenue() {
-        System.out.println("----------------- HELP -----------------");
+        System.out.println("---------------- HELP ----------------");
          System.out.println("d - deal card\n" + "n - number of remaining cards\n"
                 + "p - add a player\n" + "r - remove player\n" 
                 + "h - display Gamers\n" + "q - quit game\n");

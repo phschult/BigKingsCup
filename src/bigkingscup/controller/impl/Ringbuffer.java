@@ -2,6 +2,7 @@ package bigkingscup.controller.impl;
 
 import bigkingscup.model.impl.Player;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  *
@@ -11,6 +12,7 @@ public class Ringbuffer {
 
     private final LinkedList<Player> buffer;
     private int index = 0;
+    private Player actualPlayer;
 
     public Ringbuffer() {
         this.buffer = new LinkedList<>();
@@ -27,12 +29,19 @@ public class Ringbuffer {
             } 
         }
     }
-    
-    public void nextPlayer() {
-        index++;
-        if(index > buffer.size()) {
-            index = 1;
+    /**
+     * Iterates + 1 through the buffer. Wenn einmal durchiteriert wurde 
+     * soll wieder von vorne angefangen werden.
+     * @return 
+     */
+    public Player nextPlayer() {
+        ListIterator<Player> listIterator = buffer.listIterator();
+        if (listIterator.hasNext()) {
+            actualPlayer = listIterator.next();
+        } else {
+            actualPlayer = buffer.getFirst();
         }
+        return actualPlayer;
     }
     
     public Player get() throws IndexOutOfBoundsException {

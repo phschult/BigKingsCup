@@ -34,6 +34,7 @@ public class TUI {
                         System.out.println(controller.getActualCard());
                         controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
+                        controller.getBuffer().nextPlayer();
                     }
                     break;
                 case "n":
@@ -52,8 +53,12 @@ public class TUI {
                     controller.getBuffer().removePlayer(player);
                     break;
                 case "h":
+                     if (controller.getBuffer().getSize() == 0) {
+                        System.out.println("ERROR: You have to add a Player [p] first!");
+                    } else {
                     System.out.println(controller.printPlayers());
                     controller.getPlayer().printPlayersHand();
+                     }
                     break;
                 case "q":
                     status = false;
