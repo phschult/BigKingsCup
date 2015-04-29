@@ -20,19 +20,21 @@ public class TUI {
     public void processInputLine() {
         System.out.println("------ Welcome to Big Kings Cup ------\n");
 
-        System.out.println("---------------- HELP ----------------");
-        System.out.println("d - deal card\n" + "n - number of remaining cards\n"
-                + "p - add a player\n" + "h - display Gamers\n" + "q - quit game\n");
+        controller.printHelpMenue();
         System.out.print("--> ");
 
         String choice = scanner.next();
         while (status) {
             switch (choice) {
                 case "d":
-                    controller.setActualCard(controller.getDeck().dealCard());
-                    System.out.println(controller.getActualCard());
-                    controller.doTask(controller.getActualCard());
-                    controller.getPlayer().addCard(controller.getActualCard());
+                    if (controller.getBuffer().getSize() == 0) {
+                        System.out.println("ERROR: You have to add a Player [p] first!");
+                    } else {
+                        controller.setActualCard(controller.getDeck().dealCard());
+                        System.out.println(controller.getActualCard());
+                        controller.doTask(controller.getActualCard());
+                        controller.getPlayer().addCard(controller.getActualCard());
+                    }
                     break;
                 case "n":
                     System.out.println("There are [" + controller.getDeck().getNumOfCards() + "] Cards left!");
@@ -43,6 +45,11 @@ public class TUI {
                     System.out.print("Gender [M/W]: ");
                     String gender = scanner.next();
                     controller.addPlayer(name, gender);
+                    break;
+                case "r":
+                    System.out.print("Who want to leave the Round?\n--> ");
+                    String player = scanner.next();
+                    controller.getBuffer().removePlayer(player);
                     break;
                 case "h":
                     System.out.println(controller.printPlayers());
@@ -59,9 +66,7 @@ public class TUI {
             }
             controller.checkDeckState();
 
-            System.out.println("---------------- HELP ----------------");
-            System.out.println("d - deal card\n" + "n - number of remaining cards\n"
-                    + "p - add a player\n" + "h - display Gamers\n" + "q - quit game\n");
+            controller.printHelpMenue();
             System.out.print("--> ");
             choice = scanner.next();
         }

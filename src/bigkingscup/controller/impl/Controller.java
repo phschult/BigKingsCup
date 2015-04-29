@@ -33,6 +33,10 @@ public class Controller extends Observable {
         return this.actualCard;
     }
     
+    public Ringbuffer getBuffer() {
+        return this.rBuffer;
+    }
+    
     public Player getPlayer() {
         return rBuffer.get();
     }
@@ -50,7 +54,7 @@ public class Controller extends Observable {
     
     public void setActualCard(ICard card) {
         this.actualCard = card;
-        //notifyObservers();
+        notifyObservers();
     }
     
     private void setStatusFlag(String flag) {
@@ -70,7 +74,13 @@ public class Controller extends Observable {
         this.currentState = state;
         notifyObservers();
     }
-
+    public void printHelpMenue() {
+        System.out.println("----------------- HELP -----------------");
+         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
+                + "p - add a player\n" + "r - remove player\n" 
+                + "h - display Gamers\n" + "q - quit game\n");
+    }
+    
     public void doTask(ICard card) {
         String value = card.toString();
 
