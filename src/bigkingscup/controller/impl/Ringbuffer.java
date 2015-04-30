@@ -11,6 +11,7 @@ import java.util.ListIterator;
 public class Ringbuffer {
 
     private final LinkedList<Player> buffer;
+    private ListIterator<Player> listIterator;
     private int index = 0;
     private Player actualPlayer;
 
@@ -29,19 +30,21 @@ public class Ringbuffer {
             } 
         }
     }
+    
+//    public Player getActualPlayer() {
+//        return this.actualPlayer;
+//    }
+    
     /**
      * Iterates + 1 through the buffer. Wenn einmal durchiteriert wurde 
      * soll wieder von vorne angefangen werden.
      * @return 
      */
     public Player nextPlayer() {
-        ListIterator<Player> listIterator = buffer.listIterator();
-        if (listIterator.hasNext()) {
-            actualPlayer = listIterator.next();
-        } else {
-            actualPlayer = buffer.getFirst();
-        }
-        return actualPlayer;
+        if (listIterator == null || !listIterator.hasNext()) {
+           listIterator = buffer.listIterator();
+        } 
+        return listIterator.next();
     }
     
     public Player get() throws IndexOutOfBoundsException {

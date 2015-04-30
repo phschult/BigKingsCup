@@ -34,7 +34,7 @@ public class TUI {
                         System.out.println(controller.getActualCard());
                         controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
-                        controller.getBuffer().nextPlayer();
+                        System.out.println(controller.getBuffer().nextPlayer().getName());
                     }
                     break;
                 case "n":
