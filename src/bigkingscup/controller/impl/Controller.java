@@ -64,8 +64,9 @@ public class Controller extends Observable {
     
     public String printPlayers() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Name: ");
         for (int i = ZERO; i < rBuffer.getSize(); i++) {
-            sb.append("Name: ").append(rBuffer.get().getName()).append(" ");
+            sb.append(rBuffer.get().getName()).append(" ");
         }
         return sb.toString();
     }

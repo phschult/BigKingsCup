@@ -50,9 +50,9 @@ public class Deck implements IDeck {
     }
 
      private void createDeck(Suit[] aSuit, Rank[] aRank) {
-        for (int i = 0; i < aSuit.length; i++) {
-            for (int j = 0; j < aRank.length; j++) {
-                this.deck[index] = new Card(aSuit[i], aRank[j]); //error occurrs here, The type of Card(Suit,Rank) is erroneous
+        for (Suit aSuit1 : aSuit) {
+            for (Rank aRank1 : aRank) {
+                this.deck[index] = new Card(aSuit1, aRank1);
                 index++;
             }
         }
