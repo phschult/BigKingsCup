@@ -75,7 +75,11 @@ public class Controller extends Observable {
         this.actualCard = card;
         notifyObservers();
     }
-
+    
+    public String getStatusFlag() {
+        return this.statusFlag;
+    }
+    
     private void setStatusFlag(String flag) {
         this.statusFlag = flag;
         notifyObservers();
