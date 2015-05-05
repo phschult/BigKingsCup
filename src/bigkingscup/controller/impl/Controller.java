@@ -129,8 +129,8 @@ public class Controller extends Observable {
                 setStatusFlag("Schlücke verteilen");
                 break;
             case "Eight":
-                System.out.println("Partner");
-                setStatusFlag("Partner");
+                System.out.println("King Thumb");
+                setStatusFlag("King Thumb");
                 break;
             case "Nine":
                 System.out.println("Mädchen");
