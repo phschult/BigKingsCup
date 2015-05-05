@@ -31,10 +31,11 @@ public class TUI {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
                         controller.setActualCard(controller.getDeck().dealCard());
+                        System.out.println(controller.getBuffer().nextPlayer().getName());
                         System.out.println(controller.getActualCard());
                         controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
-                        System.out.println(controller.getBuffer().nextPlayer().getName());
+                        
                     }
                     break;
                 case "n":
