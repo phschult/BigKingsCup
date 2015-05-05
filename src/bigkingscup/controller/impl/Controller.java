@@ -145,7 +145,7 @@ public class Controller extends Observable {
                 setStatusFlag("Jungs");
                 break;
             case "Jack":
-                System.out.println("Bube");
+                System.out.println("Augenkontakt");
                 setStatusFlag("Augenkontakt");
                 break;
             case "Queen":
