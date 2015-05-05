@@ -13,8 +13,8 @@ public class TUI {
     public static Scanner scanner = new Scanner(System.in);
     private boolean status = true;
 
-    public TUI() {
-        this.controller = new Controller();
+    public TUI(Controller controller) {
+        this.controller = controller;
     }
 
     public void processInputLine() {
