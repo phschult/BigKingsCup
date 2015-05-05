@@ -25,18 +25,37 @@ public class Controller extends Observable {
         this.rBuffer = new Ringbuffer();
     }
 
+    public void setCurrentState(final IGameState state) {
+        this.currentState = state;
+        notifyObservers();
+    }
+
+    public IGameState getCurrentState() {
+        return currentState;
+    }
+
+    public void checkGameState() {
+        if (this.currentState == null) {
+            this.setCurrentState(new StateInGame(this));
+            this.currentState.change();
+        } else {
+            //check if GameState will change
+            this.currentState.change();
+        }
+    }
+
     public void addPlayer(final String name, final String gender) {
         rBuffer.put(new Player(name, gender));
     }
-    
+
     public ICard getActualCard() {
         return this.actualCard;
     }
-    
+
     public Ringbuffer getBuffer() {
         return this.rBuffer;
     }
-    
+
     public Player getPlayer() {
         return rBuffer.get();
     }
@@ -44,24 +63,24 @@ public class Controller extends Observable {
     public IDeck getDeck() {
         return deck;
     }
-    
+
     public void checkDeckState() {
-        if(this.getDeck().getNumOfCards() == 0) {
+        if (this.getDeck().getNumOfCards() == 0) {
             System.out.println("Game Over. There are no more cards on the Stack");
             System.exit(1);
         }
     }
-    
+
     public void setActualCard(ICard card) {
         this.actualCard = card;
         notifyObservers();
     }
-    
+
     private void setStatusFlag(String flag) {
         this.statusFlag = flag;
         notifyObservers();
     }
-    
+
     public String printPlayers() {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ");
@@ -71,31 +90,27 @@ public class Controller extends Observable {
         return sb.toString();
     }
 
-    public void setCurrentState(final IGameState state) {
-        this.currentState = state;
-        notifyObservers();
-    }
     public void printHelpMenue() {
         System.out.println("---------------- HELP ----------------");
-         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
-                + "p - add a player\n" + "r - remove player\n" 
-                + "h - display Gamers\n" + "q - quit game\n");
+        System.out.println("d - deal card\n" + "n - number of remaining cards\n"
+                + "p - add a player\n" + "r - remove player\n"
+                + "h - display players\n" + "q - quit game\n");
     }
-    
+
     public void doTask(ICard card) {
         String value = card.toString();
 
         String[] parts = value.split("Of");
-        String temp = parts[0]; 
-        
+        String temp = parts[0];
+
         switch (temp) {
             case "Two":
-                System.out.println("Kategorie");
-                setStatusFlag("Kategorie");
+                System.out.println("Zwei Schlücke verteilen/selber trinken");
+                setStatusFlag("Zwei Schlücke verteilen/selber trinken");
                 break;
             case "Three":
-                System.out.println("Reim");
-                setStatusFlag("Reim");
+                System.out.println("Drei Schlücke verteilen/selber trinken");
+                setStatusFlag("Drei Schlücke verteilen/selber trinken");
                 break;
             case "Four":
                 System.out.println("Questionmaster");
@@ -127,15 +142,15 @@ public class Controller extends Observable {
                 break;
             case "Jack":
                 System.out.println("Bube");
-                setStatusFlag("Bube");
+                setStatusFlag("Augenkontakt");
                 break;
             case "Queen":
-                System.out.println("Königin");
-                setStatusFlag("Königin");
+                System.out.println("Kategorie");
+                setStatusFlag("Kategorie");
                 break;
             case "King":
-                System.out.println("König");
-                setStatusFlag("König");
+                System.out.println("Reim");
+                setStatusFlag("Reim");
                 break;
             case "Ace":
                 System.out.println("Alle müssen trinken");
@@ -144,12 +159,5 @@ public class Controller extends Observable {
             default:
         }
     }
-//    public void checkGameState() {
-//        if (this.currentState == null) {
-//            this.setCurrentState(new StateInGame(this));
-//            this.currentState.change();
-//        } else {
-//            //check if GameState will change
-//            this.currentState.change();
-//        }
+
 }
