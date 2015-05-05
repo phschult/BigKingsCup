@@ -18,39 +18,37 @@ public class Ringbuffer {
     public Ringbuffer() {
         this.buffer = new LinkedList<>();
     }
-    
+
     public void put(Player player) {
-         buffer.add(player);
+        buffer.add(player);
     }
-    
+
     public void removePlayer(String player) {
-        for (int i = 0; i <= buffer.size(); i++) {
-            if(player.equals(buffer.get(i).getName())) {
+        for (int i = 0; i < buffer.size(); i++) {
+            if (player.equals(buffer.get(i).getName())) {
                 buffer.remove(i);
-            } 
+            }
         }
+         System.out.println("Player not found");
     }
-    
-//    public Player getActualPlayer() {
-//        return this.actualPlayer;
-//    }
-    
+
     /**
-     * Iterates + 1 through the buffer. Wenn einmal durchiteriert wurde 
-     * soll wieder von vorne angefangen werden.
-     * @return 
+     * Iterates + 1 through the buffer. Wenn einmal durchiteriert wurde soll
+     * wieder von vorne angefangen werden.
+     *
+     * @return
      */
     public Player nextPlayer() {
         if (listIterator == null || !listIterator.hasNext()) {
-           listIterator = buffer.listIterator();
-        } 
+            listIterator = buffer.listIterator();
+        }
         return listIterator.next();
     }
-    
+
     public Player get() throws IndexOutOfBoundsException {
         //return actualPlayer;
         Player foo = buffer.get(index);
-        index = index +1;
+        index = index + 1;
         index = index % buffer.size();
         return foo;
     }
@@ -63,4 +61,3 @@ public class Ringbuffer {
         return buffer.isEmpty();
     }
 }
-
