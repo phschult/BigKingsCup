@@ -22,15 +22,28 @@ public class Ringbuffer {
         buffer.add(player);
     }
 
-    public void removePlayer(String player) {
+        public void removePlayer(String player) {
         for (int i = 0; i < buffer.size(); i++) {
             if (player.equals(buffer.get(i).getName())) {
-                buffer.remove(i);
+                this.remove(i);
             } else {
                 System.out.println("Player not found");
             }
         }
     }
+    
+    private void remove(int index) {
+        int savedIndexBefore = listIterator.nextIndex();
+        buffer.remove(index);
+        if (savedIndexBefore > index) 
+            savedIndexBefore--;
+        
+        listIterator = buffer.listIterator();
+        while (listIterator.nextIndex() != savedIndexBefore) {
+            listIterator.next();
+        }
+    }
+
 
     /**
      * Iterates + 1 through the buffer. Wenn einmal durchiteriert wurde soll
