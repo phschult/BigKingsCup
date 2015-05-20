@@ -83,25 +83,16 @@ public class Controller extends Observable {
     private void setStatusFlag(String flag) {
         this.statusFlag = flag;
         notifyObservers();
-    }
-    
+    } 
+   
     public String printPlayersHand() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i <= rBuffer.getSize(); i++) {
-            sb.append(rBuffer.get().getName()).append(": ").append(rBuffer.get().getPlayerhand()).append("\n");
+        for (int i = 0; i < rBuffer.getSize(); i++) {
+            sb.append(rBuffer.nextPlayer().getName()).append(": ").append(rBuffer.get().getPlayerhand()).append("\n");
         }
         return sb.toString();
     }
     
-    public String printPlayers() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Name: ");
-        for (int i = ZERO; i < rBuffer.getSize(); i++) {
-            sb.append(rBuffer.get().getName()).append(" ");
-        }
-        return sb.toString();
-    }
-
     public void printHelpMenue() {
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"

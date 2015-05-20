@@ -15,21 +15,9 @@ public class Player implements IPlayer{
     private String gender;
     private List<ICard> playerHand = new LinkedList<>();
 
-    public Player() {
-        this.playerHand = new LinkedList<>();
-    }
-
     public Player(String name, String gender) {
         this.playerHand = new LinkedList<>();
         this.name = name;
-        this.gender = gender;
-    }
-    
-    private void setName(String name) {
-        this.name = name;
-    }
-    
-    private void setGender(String gender) {
         this.gender = gender;
     }
     
@@ -64,10 +52,4 @@ public class Player implements IPlayer{
     public void addCard(final ICard card) {
         playerHand.add(card);
     }
-
-    @Override
-    public void printPlayersHand() {
-        System.out.println("Hand: " + playerHand);
-    }
-
 }

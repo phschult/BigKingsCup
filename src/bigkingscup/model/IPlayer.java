@@ -19,6 +19,4 @@ public interface IPlayer {
     void clearHand();
 
     void addCard(final ICard card);
-
-    void printPlayersHand();
 }

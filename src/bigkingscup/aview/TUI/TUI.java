@@ -35,7 +35,7 @@ public class TUI {
                         System.out.println(controller.getActualCard());
                         controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
-                        
+
                     }
                     break;
                 case "n":
@@ -49,18 +49,22 @@ public class TUI {
                     controller.addPlayer(name, gender);
                     break;
                 case "r":
-                    System.out.print("Who want to leave the Round?\n--> ");
-                    String player = scanner.next();
-                    controller.getBuffer().removePlayer(player);
+                    if (controller.getBuffer().getSize() == 0) {
+                        System.out.println("ERROR: You have to add a Player [p] first!");
+                    } else {
+                        System.out.print("Who want to leave the Round?\n--> ");
+                        String player = scanner.next();
+                        controller.getBuffer().removePlayer(player);
+                    }
                     break;
                 case "h":
-                     if (controller.getBuffer().getSize() == 0) {
+                    if (controller.getBuffer().getSize() == 0) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
 //                    System.out.println(controller.printPlayers());
 //                    controller.getPlayer().printPlayersHand();
-                         System.out.println(controller.printPlayersHand());
-                     }
+                        System.out.println(controller.printPlayersHand());
+                    }
                     break;
                 case "q":
                     status = false;
