@@ -57,8 +57,9 @@ public class TUI {
                      if (controller.getBuffer().getSize() == 0) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
-                    System.out.println(controller.printPlayers());
-                    controller.getPlayer().printPlayersHand();
+//                    System.out.println(controller.printPlayers());
+//                    controller.getPlayer().printPlayersHand();
+                         System.out.println(controller.printPlayersHand());
                      }
                     break;
                 case "q":

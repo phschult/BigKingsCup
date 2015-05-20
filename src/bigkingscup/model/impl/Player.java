@@ -46,6 +46,11 @@ public class Player implements IPlayer{
     public String getGender() {
         return this.gender;
     }
+    
+    @Override
+    public List getPlayerhand() {
+        return this.playerHand;
+    }
 
     /**
      * Reset players hand.

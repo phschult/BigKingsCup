@@ -1,5 +1,7 @@
 package bigkingscup.model;
 
+import java.util.List;
+
 /**
  *
  * @author philipp Schultheiss
@@ -11,6 +13,8 @@ public interface IPlayer {
     int getNumOfCards();
 
     String getGender();
+    
+    List getPlayerhand();
 
     void clearHand();
 

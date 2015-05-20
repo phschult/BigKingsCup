@@ -13,7 +13,6 @@ public class Ringbuffer {
     private final LinkedList<Player> buffer;
     private ListIterator<Player> listIterator;
     private int index = 0;
-    private Player actualPlayer;
 
     public Ringbuffer() {
         this.buffer = new LinkedList<>();
@@ -27,9 +26,10 @@ public class Ringbuffer {
         for (int i = 0; i < buffer.size(); i++) {
             if (player.equals(buffer.get(i).getName())) {
                 buffer.remove(i);
+            } else {
+                System.out.println("Player not found");
             }
         }
-         System.out.println("Player not found");
     }
 
     /**
@@ -46,11 +46,10 @@ public class Ringbuffer {
     }
 
     public Player get() throws IndexOutOfBoundsException {
-        //return actualPlayer;
-        Player foo = buffer.get(index);
+        Player player = buffer.get(index);
         index = index + 1;
         index = index % buffer.size();
-        return foo;
+        return player;
     }
 
     public int getSize() {

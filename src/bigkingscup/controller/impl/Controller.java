@@ -84,7 +84,15 @@ public class Controller extends Observable {
         this.statusFlag = flag;
         notifyObservers();
     }
-
+    
+    public String printPlayersHand() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <= rBuffer.getSize(); i++) {
+            sb.append(rBuffer.get().getName()).append(": ").append(rBuffer.get().getPlayerhand()).append("\n");
+        }
+        return sb.toString();
+    }
+    
     public String printPlayers() {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ");
