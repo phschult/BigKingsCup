@@ -2,6 +2,7 @@ package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  *
@@ -11,6 +12,7 @@ public class TUI {
 
     private final Controller controller;
     public static Scanner scanner = new Scanner(System.in);
+    //private static final Logger logger = Logger.getLogger("BigKingsCup");
     private boolean status = true;
 
     public TUI(Controller controller) {
@@ -19,7 +21,6 @@ public class TUI {
 
     public void processInputLine() {
         System.out.println("------ Welcome to Big Kings Cup ------\n");
-
         controller.printHelpMenue();
         System.out.print("--> ");
 
