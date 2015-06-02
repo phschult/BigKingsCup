@@ -36,7 +36,11 @@ public class TUI {
                         System.out.println(controller.getActualCard());
                         controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
-
+                        if (controller.getStatusFlag().equals("Regel")) {
+                            System.out.println("You can define a new rule:\n-->");
+                            String rule = scanner.next();
+                            controller.addRule(rule);
+                        }
                     }
                     break;
                 case "n":
@@ -49,7 +53,7 @@ public class TUI {
                     String gender = scanner.next();
                     controller.addPlayer(name, gender);
                     break;
-                case "r":
+                case "l":
                     if (controller.getBuffer().getSize() == 0) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
@@ -67,6 +71,9 @@ public class TUI {
                         System.out.println(controller.printPlayersHand());
                     }
                     break;
+                case "r":
+                    System.out.println("Rules:\n");
+                    System.out.println(controller.getRules());
                 case "q":
                     status = false;
                     System.out.println("Goodbye!");

@@ -7,6 +7,8 @@ import bigkingscup.model.impl.Deck;
 import bigkingscup.model.impl.Player;
 import bigkingscup.util.observer.Observable;
 import static bigkingscup.util.StaticCollection.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Controller extends Observable {
     private ICard actualCard;
     private IGameState currentState = null;
     private String statusFlag;
+    private final List rules = new LinkedList();
 
     public Controller() {
         this.deck = new Deck();
@@ -43,7 +46,11 @@ public class Controller extends Observable {
             this.currentState.change();
         }
     }
-
+    
+    public void addRule (String rule) {
+        this.rules.add(rule);
+    }
+    
     public void addPlayer(final String name, final String gender) {
         rBuffer.put(new Player(name, gender));
     }
@@ -58,6 +65,10 @@ public class Controller extends Observable {
 
     public Player getPlayer() {
         return rBuffer.get();
+    }
+    
+    public List getRules() {
+        return this.rules;
     }
 
     public IDeck getDeck() {
@@ -96,8 +107,8 @@ public class Controller extends Observable {
     public void printHelpMenue() {
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
-                + "p - add a player\n" + "r - remove player\n"
-                + "h - display players\n" + "q - quit game\n");
+                + "p - add a player\n" + "l - remove player\n"
+                + "h - display players\n" + "r - rules\n" + "q - quit game\n");
     }
 
     public void doTask(ICard card) {
@@ -122,6 +133,7 @@ public class Controller extends Observable {
             case "Five":
                 System.out.println("Regel");
                 setStatusFlag("Regel");
+                //addRule(ruleFlag);
                 break;
             case "Six":
                 System.out.println("Ich habe noch nie...");

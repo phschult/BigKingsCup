@@ -64,7 +64,7 @@ public class Ringbuffer {
         index = index % buffer.size();
         return player;
     }
-
+  
     public int getSize() {
         return buffer.size();
     }
