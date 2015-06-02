@@ -93,6 +93,7 @@ public class Controller extends Observable {
     
     //if status then... 
     //Idee: Methode die je nach Status reagiert .. doTask() ersetzen
+    //Idee: Methode die festhält wer momentan was ist.. daumenkönig, questionmaster
     public String getStatusFlag() {
         return this.statusFlag;
     }
@@ -139,7 +140,6 @@ public class Controller extends Observable {
             case "Five":
                 System.out.println("Regel");
                 setStatusFlag("Regel");
-                //addRule(ruleFlag);
                 break;
             case "Six":
                 System.out.println("Ich habe noch nie...");
