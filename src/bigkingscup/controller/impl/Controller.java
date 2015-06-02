@@ -37,6 +37,10 @@ public class Controller extends Observable {
         return currentState;
     }
 
+    public boolean checkNumOfPlayers() {
+        return getBuffer().getSize() == 0;
+    }
+    
     public void checkGameState() {
         if (this.currentState == null) {
             this.setCurrentState(new StateInGame(this));
@@ -87,6 +91,8 @@ public class Controller extends Observable {
         notifyObservers();
     }
     
+    //if status then... 
+    //Idee: Methode die je nach Status reagiert .. doTask() ersetzen
     public String getStatusFlag() {
         return this.statusFlag;
     }

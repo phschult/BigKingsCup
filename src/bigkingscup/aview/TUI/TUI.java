@@ -2,7 +2,6 @@ package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +27,7 @@ public class TUI {
         while (status) {
             switch (choice) {
                 case "d":
-                    if (controller.getBuffer().getSize() == 0) {
+                    if (controller.checkNumOfPlayers()) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
                         controller.setActualCard(controller.getDeck().dealCard());
@@ -37,7 +36,7 @@ public class TUI {
                         controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
                         if (controller.getStatusFlag().equals("Regel")) {
-                            System.out.println("You can define a new rule:\n-->");
+                            System.out.print("You can define a new rule:\n--> ");
                             String rule = scanner.next();
                             controller.addRule(rule);
                         }
@@ -54,7 +53,7 @@ public class TUI {
                     controller.addPlayer(name, gender);
                     break;
                 case "l":
-                    if (controller.getBuffer().getSize() == 0) {
+                    if (controller.checkNumOfPlayers()) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
                         System.out.print("Who want to leave the Round?\n--> ");
@@ -63,17 +62,15 @@ public class TUI {
                     }
                     break;
                 case "h":
-                    if (controller.getBuffer().getSize() == 0) {
+                    if (controller.checkNumOfPlayers()) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
-//                    System.out.println(controller.printPlayers());
-//                    controller.getPlayer().printPlayersHand();
                         System.out.println(controller.printPlayersHand());
                     }
                     break;
                 case "r":
-                    System.out.println("Rules:\n");
                     System.out.println(controller.getRules());
+                    break;
                 case "q":
                     status = false;
                     System.out.println("Goodbye!");
