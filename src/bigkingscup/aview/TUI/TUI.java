@@ -23,7 +23,7 @@ public class TUI {
 
         String choice = scanner.next();
         while (status) {
-            switch (choice) {
+            switch (choice.toLowerCase()) {
                 case "d":
                     if (controller.checkNumOfPlayers()) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
@@ -43,8 +43,12 @@ public class TUI {
                     System.out.print("Name: ");
                     String name = scanner.next();
                     System.out.print("Gender [M/W]: ");
-                    String gender = scanner.next();
-                    controller.addPlayer(name, gender);
+                    String gender = scanner.next().toUpperCase();
+                    if (gender.equals("M") || gender.equals("W")) {
+                         controller.addPlayer(name, gender);
+                    } else {
+                        System.out.println("ERROR: You have to add a [M] or a [W]!");
+                    }
                     break;
                 case "l":
                     if (controller.checkNumOfPlayers()) {

@@ -34,10 +34,10 @@ public class Ringbuffer {
     }
     
     /**
-     * Iterates + 1 through the buffer. Wenn einmal durchiteriert wurde soll
+     * Iteriert durch den Buffer. Wenn einmal durchiteriert wurde soll
      * wieder von vorne angefangen werden.
      *
-     * @return
+     * @return next Player
      */
     public Player nextPlayer() {
         if (listIterator == null || !listIterator.hasNext()) {
@@ -46,7 +46,7 @@ public class Ringbuffer {
         return listIterator.next();
     }
 
-    public Player get() throws IndexOutOfBoundsException {
+    public Player get() {
         Player player = buffer.get(index);
         index = index + 1;
         index = index % buffer.size();

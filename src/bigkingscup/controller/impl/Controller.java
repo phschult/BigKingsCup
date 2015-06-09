@@ -136,9 +136,14 @@ public class Controller extends Observable {
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
                 + "p - add a player\n" + "l - remove player\n"
-                + "h - display players\n" + "r - rules\n" + "s - player status\n" + "q - quit game\n");
+                + "h - display players\n" + "r - rules\n" + "s - player status\n" 
+                + "q - quit game\n");
     }
-
+    
+    /**
+     * State Maschine
+     * @param card 
+     */
     public void change(ICard card) {
         String value = card.toString();
 
@@ -186,7 +191,10 @@ public class Controller extends Observable {
             setStatusMessage("Alle müssen trinken");
         }
     }
-
+    /**
+     * State Machine
+     * @return 
+     */
     public String checkGameState() {
         change(actualCard);
         String temp = null;
