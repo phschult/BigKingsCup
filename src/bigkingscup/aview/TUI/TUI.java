@@ -1,7 +1,7 @@
 package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
-import java.util.Scanner;
+import static bigkingscup.util.StaticCollection.*;
 
 /**
  *
@@ -10,8 +10,6 @@ import java.util.Scanner;
 public class TUI {
 
     private final Controller controller;
-    public static Scanner scanner = new Scanner(System.in);
-    //private static final Logger logger = Logger.getLogger("BigKingsCup");
     private boolean status = true;
 
     public TUI(Controller controller) {
@@ -33,13 +31,14 @@ public class TUI {
                         controller.setActualCard(controller.getDeck().dealCard());
                         System.out.println(controller.getBuffer().nextPlayer().getName());
                         System.out.println(controller.getActualCard());
-                        controller.doTask(controller.getActualCard());
+                        //controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
-                        if (controller.getStatusFlag().equals("Regel")) {
-                            System.out.print("You can define a new rule:\n--> ");
-                            String rule = scanner.next();
-                            controller.addRule(rule);
-                        }
+                        System.out.println(controller.checkGameState());
+//                        if (controller.getCurrentState() == State.FIVE) {
+//                            System.out.print("You can define a new rule:\n--> ");
+//                            String rule = scanner.next();
+//                            controller.addRule(rule);
+//                        }
                     }
                     break;
                 case "n":
@@ -79,6 +78,12 @@ public class TUI {
                 default:
                     System.out.println("Wrong entry , please try again!");
                     break;
+            }
+            if (controller.getDeck().getNumOfCards() == 0) {
+                System.out.println("\nGame Over. There are no more cards on the Stack.");
+                System.out.println("\nDo you want to start a new round? [true / false]");
+                System.out.print("--> ");
+                controller.setRoundFlag(scanner.nextBoolean());
             }
             controller.checkDeckState();
 

@@ -1,4 +1,4 @@
-package bigkingscup.util;
+package bigkingscup.controller;
 
 /**
  *
