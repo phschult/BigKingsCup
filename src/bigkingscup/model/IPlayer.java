@@ -19,4 +19,8 @@ public interface IPlayer {
     void clearHand();
 
     void addCard(final ICard card);
+    
+    void setStatus(String status);
+    
+    List getStatus();
 }

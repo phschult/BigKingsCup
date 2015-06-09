@@ -11,8 +11,9 @@ import java.util.List;
  */
 public class Player implements IPlayer{
 
-    private String name;
-    private String gender;
+    private final String name;
+    private final String gender;
+    private final List<String> status = new LinkedList<>();
     private List<ICard> playerHand = new LinkedList<>();
 
     public Player(String name, String gender) {
@@ -39,7 +40,16 @@ public class Player implements IPlayer{
     public List getPlayerhand() {
         return this.playerHand;
     }
-
+    
+    @Override
+    public void setStatus(String status) {
+        this.status.add(status);
+    }
+    
+    @Override
+    public List getStatus() {
+        return status;
+    }
     /**
      * Reset players hand.
      */

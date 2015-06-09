@@ -34,11 +34,6 @@ public class TUI {
                         //controller.doTask(controller.getActualCard());
                         controller.getPlayer().addCard(controller.getActualCard());
                         System.out.println(controller.checkGameState());
-//                        if (controller.getCurrentState() == State.FIVE) {
-//                            System.out.print("You can define a new rule:\n--> ");
-//                            String rule = scanner.next();
-//                            controller.addRule(rule);
-//                        }
                     }
                     break;
                 case "n":
@@ -69,6 +64,9 @@ public class TUI {
                     break;
                 case "r":
                     System.out.println(controller.getRules());
+                    break;
+                case "s":
+                    System.out.println(controller.printPlayersStatus());
                     break;
                 case "q":
                     status = false;

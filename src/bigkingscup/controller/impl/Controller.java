@@ -41,6 +41,7 @@ public class Controller extends Observable {
 
     public void setRoundFlag(boolean flag) {
         this.roundFlag = flag;
+        notifyObservers();
     }
 
     public boolean getRoundFlag() {
@@ -49,6 +50,7 @@ public class Controller extends Observable {
 
     public void setStatusMessage(String message) {
         this.statusMessage = message;
+        notifyObservers();
     }
 
     public String getStatusMessage() {
@@ -66,7 +68,7 @@ public class Controller extends Observable {
         this.actualCard = null;
         this.currentState = null;
         this.roundFlag = false;
-        this.statusMessage = "Welcome to a new Round BigKingsCup!";
+        this.statusMessage = "Welcome to a new round BigKingsCup!";
     }
 
     public void addRule(String rule) {
@@ -115,7 +117,17 @@ public class Controller extends Observable {
     public String printPlayersHand() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < rBuffer.getSize(); i++) {
-            sb.append(rBuffer.nextPlayer().getName()).append(": ").append(rBuffer.get().getPlayerhand()).append("\n");
+            sb.append(rBuffer.nextPlayer().getName()).append(": ")
+                    .append(rBuffer.get().getPlayerhand()).append("\n");
+        }
+        return sb.toString();
+    }
+    
+    public String printPlayersStatus() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < rBuffer.getSize(); i++) {
+            sb.append(rBuffer.nextPlayer().getName()).append(": ")
+                    .append(rBuffer.get().getStatus()).append("\n");
         }
         return sb.toString();
     }
@@ -124,7 +136,7 @@ public class Controller extends Observable {
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
                 + "p - add a player\n" + "l - remove player\n"
-                + "h - display players\n" + "r - rules\n" + "q - quit game\n");
+                + "h - display players\n" + "r - rules\n" + "s - player status\n" + "q - quit game\n");
     }
 
     public void change(ICard card) {
@@ -184,6 +196,7 @@ public class Controller extends Observable {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.FOUR) {
             temp = getStatusMessage();
+            this.getPlayer().setStatus(temp);
         } else if (getCurrentState() == State.FIVE) {
             temp = getStatusMessage();
             System.out.print("\n--> ");
@@ -195,16 +208,19 @@ public class Controller extends Observable {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.EIGHT) {
             temp = getStatusMessage();
+                 this.getPlayer().setStatus(temp);
         } else if (getCurrentState() == State.NINE) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.TEN) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.JACK) {
             temp = getStatusMessage();
+            this.getPlayer().setStatus(temp);
         } else if (getCurrentState() == State.QUEEN) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.JACK) {
             temp = getStatusMessage();
+            this.getPlayer().setStatus(temp);
         } else if (getCurrentState() == State.ACE) {
             temp = getStatusMessage();
         }
