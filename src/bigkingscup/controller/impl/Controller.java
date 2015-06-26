@@ -9,6 +9,8 @@ import bigkingscup.util.observer.Observable;
 import static bigkingscup.util.StaticCollection.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -24,12 +26,13 @@ public class Controller extends Observable {
     private String ruleFlag;
     private boolean roundFlag = false;
     private List rules = new LinkedList();
+    private Map genderMap = new TreeMap();
 
     public Controller() {
         this.deck = new Deck();
         this.rBuffer = new Ringbuffer();
     }
-
+    
     public void setCurrentState(State currentState) {
         this.currentState = currentState;
         notifyObservers();
@@ -64,7 +67,7 @@ public class Controller extends Observable {
     public void newRound() {
         this.deck = new Deck();
         this.rules = new LinkedList();
-        this.rBuffer = new Ringbuffer();
+        //this.rBuffer = new Ringbuffer();
         this.actualCard = null;
         this.currentState = null;
         this.roundFlag = false;
@@ -77,6 +80,7 @@ public class Controller extends Observable {
 
     public void addPlayer(final String name, final String gender) {
         rBuffer.put(new Player(name, gender));
+        //rBuffer.add(new Player(name, gender));
     }
 
     public ICard getActualCard() {
@@ -122,7 +126,7 @@ public class Controller extends Observable {
         }
         return sb.toString();
     }
-    
+
     public String printPlayersStatus() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < rBuffer.getSize(); i++) {
@@ -136,13 +140,27 @@ public class Controller extends Observable {
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
                 + "p - add a player\n" + "l - remove player\n"
-                + "h - display players\n" + "r - rules\n" + "s - player status\n" 
+                + "h - display players\n" + "r - rules\n" + "s - player status\n"
                 + "q - quit game\n");
     }
+
+    public void updateGenderMap() {
+        for (int i = 0; i < getBuffer().getSize(); i++) {
+            genderMap.put(getBuffer().get().getGender(), getBuffer().get().getName());
+            }
+        }
+//    public String printPlayerByGender(State state) {
+//        for (int i = 0; i <= genderMap.size(); i++) {
+//            if(state == State.NINE && genderMap. == "M") {
+//                
+//            }
+//        }
+//    }
     
     /**
      * State Maschine
-     * @param card 
+     *
+     * @param card
      */
     public void change(ICard card) {
         String value = card.toString();
@@ -191,9 +209,11 @@ public class Controller extends Observable {
             setStatusMessage("Alle müssen trinken");
         }
     }
+
     /**
      * State Machine
-     * @return 
+     *
+     * @return
      */
     public String checkGameState() {
         change(actualCard);
@@ -216,7 +236,7 @@ public class Controller extends Observable {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.EIGHT) {
             temp = getStatusMessage();
-                 this.getPlayer().setStatus(temp);
+            this.getPlayer().setStatus(temp);
         } else if (getCurrentState() == State.NINE) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.TEN) {

@@ -14,11 +14,11 @@ public class Ringbuffer {
     private final LinkedList<Player> buffer;
     private ListIterator<Player> listIterator;
     private int index = 0;
-
+   
     public Ringbuffer() {
         this.buffer = new LinkedList<>();
     }
-
+   
     public void put(Player player) {
         buffer.add(player);
     }

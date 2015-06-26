@@ -2,12 +2,13 @@ package bigkingscup.aview.TUI;
 
 import bigkingscup.controller.impl.Controller;
 import static bigkingscup.util.StaticCollection.*;
+import bigkingscup.util.observer.IObserver;
 
 /**
  *
  * @author philippschultheiss
  */
-public class TUI {
+public class TUI implements IObserver {
 
     private final Controller controller;
     private boolean status = true;
@@ -46,6 +47,7 @@ public class TUI {
                     String gender = scanner.next().toUpperCase();
                     if (gender.equals("M") || gender.equals("W")) {
                          controller.addPlayer(name, gender);
+                         //controller.updateGenderMap();
                     } else {
                         System.out.println("ERROR: You have to add a [M] or a [W]!");
                     }
@@ -93,5 +95,10 @@ public class TUI {
             System.out.print("--> ");
             choice = scanner.next();
         }
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
