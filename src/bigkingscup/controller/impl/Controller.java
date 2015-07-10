@@ -19,14 +19,14 @@ import java.util.TreeMap;
 public class Controller extends Observable {
 
     private IDeck deck;
-    private Ringbuffer rBuffer;
+    private final Ringbuffer rBuffer;
     private ICard actualCard;
     private State currentState;
     private String statusMessage = "Welcome to BigKingsCup!";
     private String ruleFlag;
     private boolean roundFlag = false;
     private List rules = new LinkedList();
-    private Map genderMap = new TreeMap();
+    private final Map genderMap = new TreeMap();
 
     public Controller() {
         this.deck = new Deck();
@@ -249,6 +249,8 @@ public class Controller extends Observable {
         } else if (getCurrentState() == State.JACK) {
             temp = getStatusMessage();
             this.getPlayer().setStatus(temp);
+        } else if(getCurrentState() == State.KING) {
+            temp = getStatusMessage();
         } else if (getCurrentState() == State.ACE) {
             temp = getStatusMessage();
         }
