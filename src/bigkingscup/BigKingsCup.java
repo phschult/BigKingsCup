@@ -38,29 +38,20 @@ public final class BigKingsCup {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-//        CircularBuffer c = new CircularBuffer(3);
-//
-//    System.out.println("Storing: 1");
-//    c.store(new Player("Philipp", "M"));
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Storing: 2");
-//    c.store(new Player("Anne", "W"));
-//    System.out.println("Storing: 3");
-//    c.store(new Player("Silke", "W"));
-//    System.out.println("Storing: 4");
-//    c.store(new Player("Hans", "M"));
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-//    System.out.println("Reading: " + c.read());
-
+        CircularBuffer c = new CircularBuffer(3);
+        c.addPlayer(new Player("Philipp", "M"));
+        c.addPlayer(new Player("Tobi", "M"));
+        c.addPlayer(new Player("Adrian", "M"));
         
-        BigKingsCup.getInstance();
+        System.out.println(c.getNextPlayer().getName());
+        System.out.println(c.getNextPlayer().getName());
+        System.out.println(c.getNextPlayer().getName());
+        //c.removePlayer("Philipp");
+        System.out.println(c.getNextPlayer().getName());
+        System.out.println(c.getNextPlayer().getName());
+        System.out.println(c.getNextPlayer().getName());
+        
+        
+        //BigKingsCup.getInstance();
     }
 }

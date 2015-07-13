@@ -8,47 +8,43 @@ import bigkingscup.model.impl.Player;
  */
 public class CircularBuffer {
 
-    private Player data[];
-    private int head;
-    private int tail;
+    private final Player[] buffer;
+    private int size;
+    private int indexAdd;
+    private int indexNext;
+    private Player currentPlayer;
 
-    public CircularBuffer(Integer number) {
-        data = new Player[number];
-        head = 0;
-        tail = 0;
+    public CircularBuffer(Integer size) {
+        this.size = size;
+        this.buffer = new Player[size];
+    }
+    
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+    public void addPlayer(Player player) {
+        if (indexAdd <= size) {
+                buffer[indexAdd] = player;
+                indexAdd++;
+        }
     }
 
-    public boolean store(Player player) {
-        if (!bufferFull()) {
-            data[tail++] = player;
-            if (tail == data.length) {
-                tail = 0;
+    public void removePlayer(String name) {
+        for (int i = 0; i <= size; i++) {
+            if (buffer[i].getName().equals(name)) {
+                buffer[i] = null;
             }
-            return true;
-        } else {
-            return false;
         }
     }
 
-    public Player read() {
-        if (head != tail) {
-            Player player = data[head++];
-            if (head == data.length) {
-                head = 0;
-            }
-            return player;
+    public Player getNextPlayer() {
+        if (indexNext == size) {
+            indexNext = 0;
+            currentPlayer = buffer[indexNext];
         } else {
-            return null;
+            currentPlayer = buffer[indexNext];
         }
-    }
-
-    private boolean bufferFull() {
-        if (tail + 1 == head) {
-            return true;
-        }
-        if (tail == (data.length - 1) && head == 0) {
-            return true;
-        }
-        return false;
+        indexNext++;
+        return currentPlayer;
     }
 }
