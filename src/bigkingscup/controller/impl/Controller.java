@@ -9,8 +9,6 @@ import bigkingscup.model.impl.Player;
 import bigkingscup.util.observer.Observable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  *
@@ -23,10 +21,8 @@ public class Controller extends Observable implements IController{
     private ICard actualCard;
     private State currentState;
     private String statusMessage = "Welcome to BigKingsCup!";
-    private String ruleFlag;
     private boolean roundFlag = false;
     private List rules = new LinkedList();
-    private final Map genderMap = new TreeMap();
 
     public Controller() {
         this.deck = new Deck();
