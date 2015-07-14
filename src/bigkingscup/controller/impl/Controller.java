@@ -1,12 +1,12 @@
 package bigkingscup.controller.impl;
 
+import bigkingscup.controller.IController;
 import bigkingscup.controller.State;
 import bigkingscup.model.ICard;
 import bigkingscup.model.IDeck;
 import bigkingscup.model.impl.Deck;
 import bigkingscup.model.impl.Player;
 import bigkingscup.util.observer.Observable;
-import static bigkingscup.util.StaticCollection.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,7 @@ import java.util.TreeMap;
  *
  * @author philippschultheiss
  */
-public class Controller extends Observable {
+public class Controller extends Observable implements IController{
 
     private IDeck deck;
     private CircularBuffer buffer;
@@ -33,37 +33,45 @@ public class Controller extends Observable {
         this.buffer = new CircularBuffer();
     }
     
+    @Override
     public void setCurrentState(State currentState) {
         this.currentState = currentState;
         notifyObservers();
     }
 
+    @Override
     public State getCurrentState() {
         return currentState;
     }
 
+    @Override
     public void setRoundFlag(boolean flag) {
         this.roundFlag = flag;
         notifyObservers();
     }
 
+    @Override
     public boolean getRoundFlag() {
         return roundFlag;
     }
 
+    @Override
     public void setStatusMessage(String message) {
         this.statusMessage = message;
         notifyObservers();
     }
 
+    @Override
     public String getStatusMessage() {
         return statusMessage;
     }
 
+    @Override
     public boolean checkNumOfPlayers() {
         return getBuffer().getSize() == 0;
     }
 
+    @Override
     public void newRound() {
         this.deck = new Deck();
         this.rules = new LinkedList();
@@ -74,38 +82,47 @@ public class Controller extends Observable {
         this.statusMessage = "Welcome to a new round BigKingsCup!";
     }
 
+    @Override
     public void addRule(String rule) {
         this.rules.add(rule);
     }
 
+    @Override
     public void addPlayer(final String name, final String gender) {
         buffer.addPlayer(new Player(name, gender));
     }
 
+    @Override
     public ICard getActualCard() {
         return this.actualCard;
     }
 
+    @Override
       public CircularBuffer getBuffer() {
         return this.buffer;
     }
       
+    @Override
     public Player getNextPlayer() {
         return buffer.getNextPlayer();
     }
     
+    @Override
     public Player getCurrentPlayer() {
         return buffer.getCurrentPlayer();
     }
 
+    @Override
     public List getRules() {
         return this.rules;
     }
 
+    @Override
     public IDeck getDeck() {
         return deck;
     }
 
+    @Override
     public void checkDeckState() {
         if (this.getDeck().getNumOfCards() == 0 && getRoundFlag()) {
             if (getRoundFlag()) {
@@ -116,11 +133,13 @@ public class Controller extends Observable {
         }
     }
 
+    @Override
     public void setActualCard(ICard card) {
         this.actualCard = card;
         notifyObservers();
     }
 
+    @Override
     public String printPlayersHand() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < buffer.getSize(); i++) {
@@ -130,6 +149,7 @@ public class Controller extends Observable {
         return sb.toString();
     }
 
+    @Override
     public String printPlayersStatus() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < buffer.getSize(); i++) {
@@ -139,6 +159,7 @@ public class Controller extends Observable {
         return sb.toString();
     }
 
+    @Override
     public void printHelpMenue() {
         System.out.println("---------------- HELP ----------------");
         System.out.println("d - deal card\n" + "n - number of remaining cards\n"
@@ -152,6 +173,7 @@ public class Controller extends Observable {
      *
      * @param card
      */
+    @Override
     public void change(ICard card) {
         String value = card.toString();
 
@@ -205,6 +227,7 @@ public class Controller extends Observable {
      *
      * @return
      */
+    @Override
     public String checkGameState() {
         change(actualCard);
         String temp = null;
