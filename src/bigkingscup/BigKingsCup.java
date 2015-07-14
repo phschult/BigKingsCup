@@ -37,21 +37,8 @@ public final class BigKingsCup {
      * @param args the command line arguments
      * @throws java.lang.Exception
      */
-    public static void main(String[] args) throws Exception {
-        CircularBuffer c = new CircularBuffer(3);
-        c.addPlayer(new Player("Philipp", "M"));
-        c.addPlayer(new Player("Tobi", "M"));
-        c.addPlayer(new Player("Adrian", "M"));
-        
-        System.out.println(c.getNextPlayer().getName());
-        System.out.println(c.getNextPlayer().getName());
-        System.out.println(c.getNextPlayer().getName());
-        //c.removePlayer("Philipp");
-        System.out.println(c.getNextPlayer().getName());
-        System.out.println(c.getNextPlayer().getName());
-        System.out.println(c.getNextPlayer().getName());
-        
-        
-        //BigKingsCup.getInstance();
+    public static void main(String[] args) throws Exception {      
+
+        BigKingsCup.getInstance();
     }
 }

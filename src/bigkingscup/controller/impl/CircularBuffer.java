@@ -1,6 +1,8 @@
 package bigkingscup.controller.impl;
 
 import bigkingscup.model.impl.Player;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -8,43 +10,43 @@ import bigkingscup.model.impl.Player;
  */
 public class CircularBuffer {
 
-    private final Player[] buffer;
-    private int size;
-    private int indexAdd;
-    private int indexNext;
+    private final List<Player> buffer;
+    private int index;
     private Player currentPlayer;
 
-    public CircularBuffer(Integer size) {
-        this.size = size;
-        this.buffer = new Player[size];
+    public CircularBuffer() {
+        this.buffer = new ArrayList<>();
     }
-    
+
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+
     public void addPlayer(Player player) {
-        if (indexAdd <= size) {
-                buffer[indexAdd] = player;
-                indexAdd++;
-        }
+        buffer.add(player);
     }
 
     public void removePlayer(String name) {
-        for (int i = 0; i <= size; i++) {
-            if (buffer[i].getName().equals(name)) {
-                buffer[i] = null;
+        for (int i = 0; i <= buffer.size() - 1; i++) {
+            if (buffer.get(i).getName().equals(name)) {
+                buffer.remove(i);
+                index--;
             }
         }
     }
-
+    
+    public int getSize() {
+        return buffer.size();
+    }
+    
     public Player getNextPlayer() {
-        if (indexNext == size) {
-            indexNext = 0;
-            currentPlayer = buffer[indexNext];
+        if (index == buffer.size()) {
+            index = 0;
+            currentPlayer = buffer.get(index);
         } else {
-            currentPlayer = buffer[indexNext];
+            currentPlayer = buffer.get(index);
         }
-        indexNext++;
+        index++;
         return currentPlayer;
     }
 }

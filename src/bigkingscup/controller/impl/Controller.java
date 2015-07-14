@@ -19,7 +19,7 @@ import java.util.TreeMap;
 public class Controller extends Observable {
 
     private IDeck deck;
-    private final Ringbuffer rBuffer;
+    private final CircularBuffer buffer;
     private ICard actualCard;
     private State currentState;
     private String statusMessage = "Welcome to BigKingsCup!";
@@ -30,7 +30,7 @@ public class Controller extends Observable {
 
     public Controller() {
         this.deck = new Deck();
-        this.rBuffer = new Ringbuffer();
+        this.buffer = new CircularBuffer();
     }
     
     public void setCurrentState(State currentState) {
@@ -79,20 +79,29 @@ public class Controller extends Observable {
     }
 
     public void addPlayer(final String name, final String gender) {
-        rBuffer.put(new Player(name, gender));
-        //rBuffer.add(new Player(name, gender));
+        buffer.addPlayer(new Player(name, gender));
+        //rBuffer.put(new Player(name, gender));
     }
 
     public ICard getActualCard() {
         return this.actualCard;
     }
 
-    public Ringbuffer getBuffer() {
-        return this.rBuffer;
+      public CircularBuffer getBuffer() {
+        return this.buffer;
     }
+      
+//    public Ringbuffer getBuffer() {
+//        return this.rBuffer;
+//    }
 
-    public Player getPlayer() {
-        return rBuffer.get();
+    public Player getNextPlayer() {
+        return buffer.getNextPlayer();
+        //return rBuffer.get();
+    }
+    
+    public Player getCurrentPlayer() {
+        return buffer.getCurrentPlayer();
     }
 
     public List getRules() {
@@ -120,18 +129,18 @@ public class Controller extends Observable {
 
     public String printPlayersHand() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < rBuffer.getSize(); i++) {
-            sb.append(rBuffer.nextPlayer().getName()).append(": ")
-                    .append(rBuffer.get().getPlayerhand()).append("\n");
+        for (int i = 0; i < buffer.getSize(); i++) {
+            sb.append(buffer.getNextPlayer().getName()).append(": ")
+                    .append(buffer.getCurrentPlayer().getPlayerhand()).append("\n");
         }
         return sb.toString();
     }
 
     public String printPlayersStatus() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < rBuffer.getSize(); i++) {
-            sb.append(rBuffer.nextPlayer().getName()).append(": ")
-                    .append(rBuffer.get().getStatus()).append("\n");
+        for (int i = 0; i < buffer.getSize(); i++) {
+            sb.append(buffer.getNextPlayer().getName()).append(": ")
+                    .append(buffer.getCurrentPlayer().getStatus()).append("\n");
         }
         return sb.toString();
     }
@@ -144,11 +153,11 @@ public class Controller extends Observable {
                 + "q - quit game\n");
     }
 
-    public void updateGenderMap() {
-        for (int i = 0; i < getBuffer().getSize(); i++) {
-            genderMap.put(getBuffer().get().getGender(), getBuffer().get().getName());
-            }
-        }
+//    public void updateGenderMap() {
+//        for (int i = 0; i < getBuffer().getSize(); i++) {
+//            genderMap.put(getBuffer().get().getGender(), getBuffer().get().getName());
+//            }
+//        }
 //    public String printPlayerByGender(State state) {
 //        for (int i = 0; i <= genderMap.size(); i++) {
 //            if(state == State.NINE && genderMap. == "M") {
@@ -224,7 +233,7 @@ public class Controller extends Observable {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.FOUR) {
             temp = getStatusMessage();
-            this.getPlayer().setStatus(temp);
+            this.getCurrentPlayer().setStatus(temp);
         } else if (getCurrentState() == State.FIVE) {
             temp = getStatusMessage();
             System.out.print("\n--> ");
@@ -236,19 +245,19 @@ public class Controller extends Observable {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.EIGHT) {
             temp = getStatusMessage();
-            this.getPlayer().setStatus(temp);
+            this.getCurrentPlayer().setStatus(temp);
         } else if (getCurrentState() == State.NINE) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.TEN) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.JACK) {
             temp = getStatusMessage();
-            this.getPlayer().setStatus(temp);
+            this.getCurrentPlayer().setStatus(temp);
         } else if (getCurrentState() == State.QUEEN) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.JACK) {
             temp = getStatusMessage();
-            this.getPlayer().setStatus(temp);
+            this.getCurrentPlayer().setStatus(temp);
         } else if(getCurrentState() == State.KING) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.ACE) {
