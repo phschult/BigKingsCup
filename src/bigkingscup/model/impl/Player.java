@@ -15,7 +15,7 @@ public class Player implements IPlayer{
     private final String gender;
     private final List<String> status = new LinkedList<>();
     private List<ICard> playerHand = new LinkedList<>();
-
+    
     public Player(String name, String gender) {
         this.playerHand = new LinkedList<>();
         this.name = name;
@@ -50,9 +50,7 @@ public class Player implements IPlayer{
     public List getStatus() {
         return status;
     }
-    /**
-     * Reset players hand.
-     */
+
     @Override
     public void clearHand() {
         this.playerHand = new LinkedList<>();

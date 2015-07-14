@@ -19,7 +19,7 @@ import java.util.TreeMap;
 public class Controller extends Observable {
 
     private IDeck deck;
-    private final CircularBuffer buffer;
+    private CircularBuffer buffer;
     private ICard actualCard;
     private State currentState;
     private String statusMessage = "Welcome to BigKingsCup!";
@@ -67,7 +67,7 @@ public class Controller extends Observable {
     public void newRound() {
         this.deck = new Deck();
         this.rules = new LinkedList();
-        //this.rBuffer = new Ringbuffer();
+        this.buffer = new CircularBuffer();
         this.actualCard = null;
         this.currentState = null;
         this.roundFlag = false;
@@ -80,7 +80,6 @@ public class Controller extends Observable {
 
     public void addPlayer(final String name, final String gender) {
         buffer.addPlayer(new Player(name, gender));
-        //rBuffer.put(new Player(name, gender));
     }
 
     public ICard getActualCard() {
@@ -91,13 +90,8 @@ public class Controller extends Observable {
         return this.buffer;
     }
       
-//    public Ringbuffer getBuffer() {
-//        return this.rBuffer;
-//    }
-
     public Player getNextPlayer() {
         return buffer.getNextPlayer();
-        //return rBuffer.get();
     }
     
     public Player getCurrentPlayer() {
@@ -153,19 +147,6 @@ public class Controller extends Observable {
                 + "q - quit game\n");
     }
 
-//    public void updateGenderMap() {
-//        for (int i = 0; i < getBuffer().getSize(); i++) {
-//            genderMap.put(getBuffer().get().getGender(), getBuffer().get().getName());
-//            }
-//        }
-//    public String printPlayerByGender(State state) {
-//        for (int i = 0; i <= genderMap.size(); i++) {
-//            if(state == State.NINE && genderMap. == "M") {
-//                
-//            }
-//        }
-//    }
-    
     /**
      * State Maschine
      *
@@ -188,7 +169,7 @@ public class Controller extends Observable {
             setStatusMessage("Questionmaster");
         } else if (temp.equals("Five")) {
             setCurrentState(State.FIVE);
-            setStatusMessage("Regel");
+            setStatusMessage("Regel festlegen");
         } else if (temp.equals("Six")) {
             setCurrentState(State.SIX);
             setStatusMessage("Ich habe noch nie...");
@@ -236,9 +217,6 @@ public class Controller extends Observable {
             this.getCurrentPlayer().setStatus(temp);
         } else if (getCurrentState() == State.FIVE) {
             temp = getStatusMessage();
-            System.out.print("\n--> ");
-            ruleFlag = scanner.next();
-            addRule(ruleFlag);
         } else if (getCurrentState() == State.SIX) {
             temp = getStatusMessage();
         } else if (getCurrentState() == State.SEVEN) {

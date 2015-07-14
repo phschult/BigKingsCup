@@ -1,5 +1,6 @@
 package bigkingscup.aview.TUI;
 
+import bigkingscup.controller.State;
 import bigkingscup.controller.impl.Controller;
 import static bigkingscup.util.StaticCollection.*;
 import bigkingscup.util.observer.IObserver;
@@ -29,13 +30,23 @@ public class TUI implements IObserver {
                     if (controller.checkNumOfPlayers()) {
                         System.out.println("ERROR: You have to add a Player [p] first!");
                     } else {
+                        //Eine neue Karte wird gezogen
                         controller.setActualCard(controller.getDeck().dealCard());
+
+                        //Nächster Spieler wird aufgerufen und ihm die Karte zugewiesen
                         System.out.println(controller.getNextPlayer().getName());
-                        //System.out.println("Player: " + controller.getBuffer().nextPlayer().getName());
                         System.out.println("Card: " + controller.getActualCard());
-                        //controller.doTask(controller.getActualCard());
                         controller.getCurrentPlayer().addCard(controller.getActualCard());
+
+                        //Überprüft die vom Spieler auszuführende Aktion
                         System.out.println("Action: " + controller.checkGameState());
+
+                        //Abfrage ob Regel gesetzt werden muss
+                        if (controller.getCurrentState() == State.FIVE) {
+                            System.out.print("\n--> ");
+                            String ruleFlag = scanner.next();
+                            controller.addRule(ruleFlag);
+                        }
                     }
                     break;
                 case "n":
@@ -47,8 +58,7 @@ public class TUI implements IObserver {
                     System.out.print("Gender [M/W]: ");
                     String gender = scanner.next().toUpperCase();
                     if (gender.equals("M") || gender.equals("W")) {
-                         controller.addPlayer(name, gender);
-                         //controller.updateGenderMap();
+                        controller.addPlayer(name, gender);
                     } else {
                         System.out.println("ERROR: You have to add a [M] or a [W]!");
                     }
@@ -70,7 +80,7 @@ public class TUI implements IObserver {
                     }
                     break;
                 case "r":
-                    System.out.println(controller.getRules());
+                    System.out.println("Rules: " + controller.getRules());
                     break;
                 case "s":
                     System.out.println(controller.printPlayersStatus());
